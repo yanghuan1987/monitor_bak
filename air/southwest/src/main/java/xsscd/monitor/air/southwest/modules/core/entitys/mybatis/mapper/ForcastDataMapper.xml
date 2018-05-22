@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.mapper.ForcastDataMapper">
+ <resultMap id="areaProvince" type="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.AreaProvince">
+    <id column="pid" property="pid" jdbcType="BIGINT"/>
+    <result column="ProvinceCode" property="provinceCode" jdbcType="INTEGER"/>
+    <result column="ProvinceName" property="provinceName" jdbcType="VARCHAR"/>
+    <result column="ProvinceJC" property="provinceJC" jdbcType="VARCHAR"/>
+    <result column="OrderP" property="orderP" jdbcType="INTEGER"/>
+    <result column="IsMunicipality" property="isMunicipality" jdbcType="INTEGER"/>
+    <collection property="provinceZones" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.AreaZone">
+        <id column="zid" property="zid" jdbcType="BIGINT"/>
+        <result column="ZoneCode" property="zoneCode" jdbcType="INTEGER"/>
+        <result column="areaName" property="zoneName" jdbcType="VARCHAR"/>
+        <result column="ZoneJC" property="zoneJC" jdbcType="VARCHAR"/>
+        <result column="OrderP" property="orderP" jdbcType="INTEGER"/>
+        <result column="ProvinceCode" property="provinceCode" jdbcType="INTEGER"/>
+        <collection property="forcastDataList" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.ForcastData">
+            <id column="aid" property="aid" jdbcType="BIGINT"/>
+            <result column="ZoneId" property="zoneId" jdbcType="BIGINT"/>
+            <result column="CityCode" property="cityCode" jdbcType="INTEGER"/>
+            <result column="ProvinceName" property="ProvinceName" jdbcType="VARCHAR"/>
+            <result column="areaName" property="areaName" jdbcType="VARCHAR"/>
+            <result column="cityname" property="cityName" jdbcType="VARCHAR"/>
+            <result column="timepoint" property="forecastDate" jdbcType="TIMESTAMP"/>
+            <result column="primarypollutant" property="primarypollutant" jdbcType="VARCHAR"/>
+            <result column="aqi" property="AQI" jdbcType="VARCHAR"/>
+            <result column="pm2_5" property="PM2_5" jdbcType="VARCHAR"/>
+            <result column="O3" property="O3" jdbcType="VARCHAR"/>
+        </collection>
+    </collection>
+</resultMap>
+<select id="getForcastAudateCity1" parameterType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.ForcastDataConditions" resultMap="areaProvince">
+    select c.ProvinceName,c.Id as pid,b.areaName,b.id as zId,a.citycode,a.cityname,forecastaudit.timepoint,forecastaudit.* from southwestCity a
+    left join CityArea b ON b.id=a.areaId
+    left join Province1 c ON c.id=b.provincesId
+    left join (select forecastaudit.citycode,forecastaudit.timepoint,forecastaudit.aqi,forecastaudit.content, REPLACE(forecastaudit.primarypollutant , '臭氧8小时', '臭氧') primarypollutant,REPLACE(forecastaudit.quality, '至', '或') quality,forecastset.pm2_5_dr as pm2_5 from forecastaudit
+    left join forecastset on forecastaudit.citycode=forecastset.citycode and forecastaudit.timepoint=forecastset.timepoint where forecastaudit.timepoint=#{forecastDate})forecastaudit on a.citycode=forecastaudit.citycode
+    WHERE c.id in
+    <foreach collection="aid" item="item" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+ </select>
+ </mapper>
+ 

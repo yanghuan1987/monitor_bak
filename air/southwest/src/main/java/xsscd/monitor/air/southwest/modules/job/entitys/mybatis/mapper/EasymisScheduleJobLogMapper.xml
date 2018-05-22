@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.job.entitys.mybatis.mapper.EasymisScheduleJobLogMapper">   
+ <resultMap id="EasymisScheduleJobLogResultMap" type="xsscd.monitor.air.southwest.modules.job.entitys.mybatis.dto.EasymisScheduleJobLog">  
+<result column="log_id" property="logId" jdbcType="VARCHAR"/> 
+<result column="job_id" property="jobId" jdbcType="VARCHAR"/> 
+<result column="org_id" property="orgId" jdbcType="VARCHAR"/> 
+<result column="bean_name" property="beanName" jdbcType="VARCHAR"/> 
+<result column="method_name" property="methodName" jdbcType="VARCHAR"/> 
+<result column="params" property="params" jdbcType="VARCHAR"/> 
+<result column="status" property="status" jdbcType="INTEGER"/> 
+<result column="error" property="error" jdbcType="VARCHAR"/> 
+<result column="run_time" property="runTime" jdbcType="INTEGER"/> 
+<result column="create_time" property="createTime" jdbcType="DATE"/> 
+</resultMap>  
+<select id="getList" parameterType="map" resultMap="EasymisScheduleJobLogResultMap">   
+  SELECT t.* FROM easymis_schedule_job_log t  
+ <where> 
+ <if test="logId != null and logId != '' ">  
+   t.log_id = #{logId}  
+  </if>  
+ <if test="jobId != null and jobId != '' ">  
+   and t.job_id = #{jobId}  
+  </if>  
+ <if test="orgId != null and orgId != '' ">  
+   and t.org_id = #{orgId}  
+  </if>  
+ <if test="beanName != null and beanName != '' ">  
+   and t.bean_name = #{beanName}  
+  </if>  
+ <if test="methodName != null and methodName != '' ">  
+   and t.method_name = #{methodName}  
+  </if>  
+ <if test="params != null and params != '' ">  
+   and t.params = #{params}  
+  </if>  
+ <if test="status != null and status != '' ">  
+   and t.status = #{status}  
+  </if>  
+ <if test="error != null and error != '' ">  
+   and t.error = #{error}  
+  </if>  
+ <if test="runTime != null and runTime != '' ">  
+   and t.run_time = #{runTime}  
+  </if>  
+ <if test="createTime != null and createTime != '' ">  
+   and t.create_time = #{createTime}  
+  </if>  
+  </where> 
+   
+ </select>  
+ <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.job.entitys.mybatis.dto.EasymisScheduleJobLog">  
+ INSERT INTO easymis_schedule_job_log(log_id,job_id,org_id,bean_name,method_name,params,status,error,run_time,create_time)values(#{logId},#{jobId},#{orgId},#{beanName},#{methodName},#{params},#{status},#{error},#{runTime},#{createTime}) 
+ </insert>  
+ <insert id="saveBatch" parameterType="java.util.List">  
+ INSERT INTO easymis_schedule_job_log(log_id,job_id,org_id,bean_name,method_name,params,status,error,run_time,create_time)values 
+  <foreach collection="list" item="bean" index="index" separator=","> 
+ (#{bean.logId},#{bean.jobId},#{bean.orgId},#{bean.beanName},#{bean.methodName},#{bean.params},#{bean.status},#{bean.error},#{bean.runTime},#{bean.createTime}) 
+  </foreach> 
+ </insert>  
+ <update id="update" parameterType="xsscd.monitor.air.southwest.modules.job.entitys.mybatis.dto.EasymisScheduleJobLog">  
+  UPDATE easymis_schedule_job_log SET log_id= #{logId},job_id= #{jobId},org_id= #{orgId},bean_name= #{beanName},method_name= #{methodName},params= #{params},status= #{status},error= #{error},run_time= #{runTime},create_time= #{createTime} WHERE log_id= #{logId} 
+ </update> 
+ <delete id="delete" parameterType="java.lang.String"> 
+  DELETE FROM easymis_schedule_job_log WHERE log_id = #{logId} 
+ </delete>  
+ <update id="removeBatch" parameterType="java.util.List"> 
+  UPDATE easymis_schedule_job_log SET delete_status=2  WHERE log_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <update id="restoreBatch" parameterType="java.util.List"> 
+  UPDATE easymis_schedule_job_log SET delete_status=1  WHERE log_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <delete id="deleteBatch" parameterType="java.util.List"> 
+  DELETE FROM easymis_schedule_job_log WHERE log_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </delete>  
+ <select id="findById" parameterType="java.lang.String" resultMap="EasymisScheduleJobLogResultMap">  
+  SELECT t.* FROM easymis_schedule_job_log t WHERE t.log_id = #{logId} 
+ </select>  
+ <select id="findByIds" parameterType="java.util.List" resultMap="EasymisScheduleJobLogResultMap">   
+  SELECT t.* FROM easymis_schedule_job_log t  WHERE log_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </select>  
+ </mapper>  
+ 

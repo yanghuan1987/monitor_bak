@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.mapper.MemberMapper">   
+ <resultMap id="MemberResultMap" type="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.Member">  
+<result column="member_id" property="memberId" jdbcType="VARCHAR"/> 
+<result column="org_id" property="orgId" jdbcType="VARCHAR"/> 
+<result column="member_name" property="memberName" jdbcType="VARCHAR"/> 
+<result column="name" property="name" jdbcType="VARCHAR"/> 
+<result column="nickname" property="nickname" jdbcType="VARCHAR"/> 
+<result column="password" property="password" jdbcType="VARCHAR"/> 
+<result column="gender" property="gender" jdbcType="BOOLEAN"/> 
+<result column="birth" property="birth" jdbcType="DATE"/> 
+<result column="intro" property="intro" jdbcType="VARCHAR"/> 
+<result column="comefrom" property="comefrom" jdbcType="VARCHAR"/> 
+<result column="qq" property="qq" jdbcType="VARCHAR"/> 
+<result column="phone" property="phone" jdbcType="VARCHAR"/> 
+<result column="mobile" property="mobile" jdbcType="VARCHAR"/> 
+<result column="signature" property="signature" jdbcType="VARCHAR"/> 
+<result column="id_card_no" property="idCardNo" jdbcType="VARCHAR"/> 
+<result column="bp_value" property="bpValue" jdbcType="INTEGER"/> 
+<result column="freezed_value" property="freezedValue" jdbcType="INTEGER"/> 
+<result column="balance" property="balance" jdbcType="FLOAT"/> 
+<result column="money" property="money" jdbcType="FLOAT"/> 
+<result column="frozen_money" property="frozenMoney" jdbcType="FLOAT"/> 
+<result column="sign_in_times" property="signInTimes" jdbcType="INTEGER"/> 
+<result column="sign_in_date" property="signInDate" jdbcType="DATE"/> 
+<result column="sign_in_time_all" property="signInTimeAll" jdbcType="INTEGER"/> 
+<result column="update_password_time" property="updatePasswordTime" jdbcType="DATE"/> 
+<result column="login_failure_count" property="loginFailureCount" jdbcType="INTEGER"/> 
+<result column="session_id" property="sessionId" jdbcType="VARCHAR"/> 
+<result column="register_channel" property="registerChannel" jdbcType="INTEGER"/> 
+<result column="register_time" property="registerTime" jdbcType="DATE"/> 
+<result column="register_ip" property="registerIp" jdbcType="VARCHAR"/> 
+<result column="last_login_time" property="lastLoginTime" jdbcType="DATE"/> 
+<result column="last_login_ip" property="lastLoginIp" jdbcType="VARCHAR"/> 
+<result column="login_count" property="loginCount" jdbcType="INTEGER"/> 
+<result column="rank" property="rank" jdbcType="INTEGER"/> 
+<result column="upload_total" property="uploadTotal" jdbcType="INTEGER"/> 
+<result column="upload_size" property="uploadSize" jdbcType="INTEGER"/> 
+<result column="upload_date" property="uploadDate" jdbcType="DATE"/> 
+<result column="is_admin" property="isAdmin" jdbcType="BOOLEAN"/> 
+<result column="is_self_admin" property="isSelfAdmin" jdbcType="BOOLEAN"/> 
+<result column="is_disabled" property="isDisabled" jdbcType="BOOLEAN"/> 
+<result column="status" property="status" jdbcType="INTEGER"/> 
+<result column="user_type" property="userType" jdbcType="VARCHAR"/> 
+<result column="company_name" property="companyName" jdbcType="VARCHAR"/> 
+<result column="company_address" property="companyAddress" jdbcType="VARCHAR"/> 
+<result column="handler_office" property="handlerOffice" jdbcType="VARCHAR"/> 
+<result column="company_telephone" property="companyTelephone" jdbcType="VARCHAR"/> 
+<result column="company_url" property="companyUrl" jdbcType="VARCHAR"/> 
+<result column="company_logo" property="companyLogo" jdbcType="VARCHAR"/> 
+<result column="hobby" property="hobby" jdbcType="VARCHAR"/> 
+<result column="country_id" property="countryId" jdbcType="INTEGER"/> 
+<result column="country_name" property="countryName" jdbcType="VARCHAR"/> 
+<result column="province_id" property="provinceId" jdbcType="INTEGER"/> 
+<result column="province_name" property="provinceName" jdbcType="VARCHAR"/> 
+<result column="city_id" property="cityId" jdbcType="INTEGER"/> 
+<result column="city_name" property="cityName" jdbcType="VARCHAR"/> 
+<result column="district_id" property="districtId" jdbcType="INTEGER"/> 
+<result column="district_name" property="districtName" jdbcType="VARCHAR"/> 
+<result column="avatar" property="avatar" jdbcType="VARCHAR"/> 
+<result column="experience" property="experience" jdbcType="VARCHAR"/> 
+<result column="rank_number" property="rankNumber" jdbcType="INTEGER"/> 
+<result column="rank_change_date" property="rankChangeDate" jdbcType="DATE"/> 
+<result column="now_integral" property="nowIntegral" jdbcType="VARCHAR"/> 
+<result column="login_fail_times" property="loginFailTimes" jdbcType="INTEGER"/> 
+<result column="unlock_date" property="unlockDate" jdbcType="DATE"/> 
+<result column="email_activation_sign" property="emailActivationSign" jdbcType="VARCHAR"/> 
+<result column="mobile_activation_sign" property="mobileActivationSign" jdbcType="VARCHAR"/> 
+<result column="company_verify_state" property="companyVerifyState" jdbcType="INTEGER"/> 
+<result column="verify_depict" property="verifyDepict" jdbcType="VARCHAR"/> 
+<result column="reg_capital" property="regCapital" jdbcType="VARCHAR"/> 
+<result column="contact_person" property="contactPerson" jdbcType="VARCHAR"/> 
+<result column="contact_mobile" property="contactMobile" jdbcType="VARCHAR"/> 
+<result column="verify_type_id" property="verifyTypeId" jdbcType="VARCHAR"/> 
+<result column="certificate_id" property="certificateId" jdbcType="VARCHAR"/> 
+</resultMap>  
+<select id="getList" parameterType="map" resultMap="MemberResultMap">   
+  SELECT t.* FROM easymis_member t  
+ <where> 
+ <if test="memberId != null and memberId != '' ">  
+   t.member_id = #{memberId}  
+  </if>  
+ <if test="orgId != null and orgId != '' ">  
+   and t.org_id = #{orgId}  
+  </if>  
+ <if test="memberName != null and memberName != '' ">  
+   and t.member_name = #{memberName}  
+  </if>  
+ <if test="name != null and name != '' ">  
+   and t.name = #{name}  
+  </if>  
+ <if test="nickname != null and nickname != '' ">  
+   and t.nickname = #{nickname}  
+  </if>  
+ <if test="password != null and password != '' ">  
+   and t.password = #{password}  
+  </if>  
+ <if test="gender != null and gender != '' ">  
+   and t.gender = #{gender}  
+  </if>  
+ <if test="birth != null and birth != '' ">  
+   and t.birth = #{birth}  
+  </if>  
+ <if test="intro != null and intro != '' ">  
+   and t.intro = #{intro}  
+  </if>  
+ <if test="comefrom != null and comefrom != '' ">  
+   and t.comefrom = #{comefrom}  
+  </if>  
+ <if test="qq != null and qq != '' ">  
+   and t.qq = #{qq}  
+  </if>  
+ <if test="phone != null and phone != '' ">  
+   and t.phone = #{phone}  
+  </if>  
+ <if test="mobile != null and mobile != '' ">  
+   and t.mobile = #{mobile}  
+  </if>  
+ <if test="signature != null and signature != '' ">  
+   and t.signature = #{signature}  
+  </if>  
+ <if test="idCardNo != null and idCardNo != '' ">  
+   and t.id_card_no = #{idCardNo}  
+  </if>  
+ <if test="bpValue != null and bpValue != '' ">  
+   and t.bp_value = #{bpValue}  
+  </if>  
+ <if test="freezedValue != null and freezedValue != '' ">  
+   and t.freezed_value = #{freezedValue}  
+  </if>  
+ <if test="balance != null and balance != '' ">  
+   and t.balance = #{balance}  
+  </if>  
+ <if test="money != null and money != '' ">  
+   and t.money = #{money}  
+  </if>  
+ <if test="frozenMoney != null and frozenMoney != '' ">  
+   and t.frozen_money = #{frozenMoney}  
+  </if>  
+ <if test="signInTimes != null and signInTimes != '' ">  
+   and t.sign_in_times = #{signInTimes}  
+  </if>  
+ <if test="signInDate != null and signInDate != '' ">  
+   and t.sign_in_date = #{signInDate}  
+  </if>  
+ <if test="signInTimeAll != null and signInTimeAll != '' ">  
+   and t.sign_in_time_all = #{signInTimeAll}  
+  </if>  
+ <if test="updatePasswordTime != null and updatePasswordTime != '' ">  
+   and t.update_password_time = #{updatePasswordTime}  
+  </if>  
+ <if test="loginFailureCount != null and loginFailureCount != '' ">  
+   and t.login_failure_count = #{loginFailureCount}  
+  </if>  
+ <if test="sessionId != null and sessionId != '' ">  
+   and t.session_id = #{sessionId}  
+  </if>  
+ <if test="registerChannel != null and registerChannel != '' ">  
+   and t.register_channel = #{registerChannel}  
+  </if>  
+ <if test="registerTime != null and registerTime != '' ">  
+   and t.register_time = #{registerTime}  
+  </if>  
+ <if test="registerIp != null and registerIp != '' ">  
+   and t.register_ip = #{registerIp}  
+  </if>  
+ <if test="lastLoginTime != null and lastLoginTime != '' ">  
+   and t.last_login_time = #{lastLoginTime}  
+  </if>  
+ <if test="lastLoginIp != null and lastLoginIp != '' ">  
+   and t.last_login_ip = #{lastLoginIp}  
+  </if>  
+ <if test="loginCount != null and loginCount != '' ">  
+   and t.login_count = #{loginCount}  
+  </if>  
+ <if test="rank != null and rank != '' ">  
+   and t.rank = #{rank}  
+  </if>  
+ <if test="uploadTotal != null and uploadTotal != '' ">  
+   and t.upload_total = #{uploadTotal}  
+  </if>  
+ <if test="uploadSize != null and uploadSize != '' ">  
+   and t.upload_size = #{uploadSize}  
+  </if>  
+ <if test="uploadDate != null and uploadDate != '' ">  
+   and t.upload_date = #{uploadDate}  
+  </if>  
+ <if test="isAdmin != null and isAdmin != '' ">  
+   and t.is_admin = #{isAdmin}  
+  </if>  
+ <if test="isSelfAdmin != null and isSelfAdmin != '' ">  
+   and t.is_self_admin = #{isSelfAdmin}  
+  </if>  
+ <if test="isDisabled != null and isDisabled != '' ">  
+   and t.is_disabled = #{isDisabled}  
+  </if>  
+ <if test="status != null and status != '' ">  
+   and t.status = #{status}  
+  </if>  
+ <if test="userType != null and userType != '' ">  
+   and t.user_type = #{userType}  
+  </if>  
+ <if test="companyName != null and companyName != '' ">  
+   and t.company_name = #{companyName}  
+  </if>  
+ <if test="companyAddress != null and companyAddress != '' ">  
+   and t.company_address = #{companyAddress}  
+  </if>  
+ <if test="handlerOffice != null and handlerOffice != '' ">  
+   and t.handler_office = #{handlerOffice}  
+  </if>  
+ <if test="companyTelephone != null and companyTelephone != '' ">  
+   and t.company_telephone = #{companyTelephone}  
+  </if>  
+ <if test="companyUrl != null and companyUrl != '' ">  
+   and t.company_url = #{companyUrl}  
+  </if>  
+ <if test="companyLogo != null and companyLogo != '' ">  
+   and t.company_logo = #{companyLogo}  
+  </if>  
+ <if test="hobby != null and hobby != '' ">  
+   and t.hobby = #{hobby}  
+  </if>  
+ <if test="countryId != null and countryId != '' ">  
+   and t.country_id = #{countryId}  
+  </if>  
+ <if test="countryName != null and countryName != '' ">  
+   and t.country_name = #{countryName}  
+  </if>  
+ <if test="provinceId != null and provinceId != '' ">  
+   and t.province_id = #{provinceId}  
+  </if>  
+ <if test="provinceName != null and provinceName != '' ">  
+   and t.province_name = #{provinceName}  
+  </if>  
+ <if test="cityId != null and cityId != '' ">  
+   and t.city_id = #{cityId}  
+  </if>  
+ <if test="cityName != null and cityName != '' ">  
+   and t.city_name = #{cityName}  
+  </if>  
+ <if test="districtId != null and districtId != '' ">  
+   and t.district_id = #{districtId}  
+  </if>  
+ <if test="districtName != null and districtName != '' ">  
+   and t.district_name = #{districtName}  
+  </if>  
+ <if test="avatar != null and avatar != '' ">  
+   and t.avatar = #{avatar}  
+  </if>  
+ <if test="experience != null and experience != '' ">  
+   and t.experience = #{experience}  
+  </if>  
+ <if test="rankNumber != null and rankNumber != '' ">  
+   and t.rank_number = #{rankNumber}  
+  </if>  
+ <if test="rankChangeDate != null and rankChangeDate != '' ">  
+   and t.rank_change_date = #{rankChangeDate}  
+  </if>  
+ <if test="nowIntegral != null and nowIntegral != '' ">  
+   and t.now_integral = #{nowIntegral}  
+  </if>  
+ <if test="loginFailTimes != null and loginFailTimes != '' ">  
+   and t.login_fail_times = #{loginFailTimes}  
+  </if>  
+ <if test="unlockDate != null and unlockDate != '' ">  
+   and t.unlock_date = #{unlockDate}  
+  </if>  
+ <if test="emailActivationSign != null and emailActivationSign != '' ">  
+   and t.email_activation_sign = #{emailActivationSign}  
+  </if>  
+ <if test="mobileActivationSign != null and mobileActivationSign != '' ">  
+   and t.mobile_activation_sign = #{mobileActivationSign}  
+  </if>  
+ <if test="companyVerifyState != null and companyVerifyState != '' ">  
+   and t.company_verify_state = #{companyVerifyState}  
+  </if>  
+ <if test="verifyDepict != null and verifyDepict != '' ">  
+   and t.verify_depict = #{verifyDepict}  
+  </if>  
+ <if test="regCapital != null and regCapital != '' ">  
+   and t.reg_capital = #{regCapital}  
+  </if>  
+ <if test="contactPerson != null and contactPerson != '' ">  
+   and t.contact_person = #{contactPerson}  
+  </if>  
+ <if test="contactMobile != null and contactMobile != '' ">  
+   and t.contact_mobile = #{contactMobile}  
+  </if>  
+ <if test="verifyTypeId != null and verifyTypeId != '' ">  
+   and t.verify_type_id = #{verifyTypeId}  
+  </if>  
+ <if test="certificateId != null and certificateId != '' ">  
+   and t.certificate_id = #{certificateId}  
+  </if>  
+  </where> 
+   
+ </select>  
+ <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.Member">  
+ INSERT INTO easymis_member(member_id,org_id,member_name,name,nickname,password,gender,birth,intro,comefrom,qq,phone,mobile,signature,id_card_no,bp_value,freezed_value,balance,money,frozen_money,sign_in_times,sign_in_date,sign_in_time_all,update_password_time,login_failure_count,session_id,register_channel,register_time,register_ip,last_login_time,last_login_ip,login_count,rank,upload_total,upload_size,upload_date,is_admin,is_self_admin,is_disabled,status,user_type,company_name,company_address,handler_office,company_telephone,company_url,company_logo,hobby,country_id,country_name,province_id,province_name,city_id,city_name,district_id,district_name,avatar,experience,rank_number,rank_change_date,now_integral,login_fail_times,unlock_date,email_activation_sign,mobile_activation_sign,company_verify_state,verify_depict,reg_capital,contact_person,contact_mobile,verify_type_id,certificate_id)values(#{memberId},#{orgId},#{memberName},#{name},#{nickname},#{password},#{gender},#{birth},#{intro},#{comefrom},#{qq},#{phone},#{mobile},#{signature},#{idCardNo},#{bpValue},#{freezedValue},#{balance},#{money},#{frozenMoney},#{signInTimes},#{signInDate},#{signInTimeAll},#{updatePasswordTime},#{loginFailureCount},#{sessionId},#{registerChannel},#{registerTime},#{registerIp},#{lastLoginTime},#{lastLoginIp},#{loginCount},#{rank},#{uploadTotal},#{uploadSize},#{uploadDate},#{isAdmin},#{isSelfAdmin},#{isDisabled},#{status},#{userType},#{companyName},#{companyAddress},#{handlerOffice},#{companyTelephone},#{companyUrl},#{companyLogo},#{hobby},#{countryId},#{countryName},#{provinceId},#{provinceName},#{cityId},#{cityName},#{districtId},#{districtName},#{avatar},#{experience},#{rankNumber},#{rankChangeDate},#{nowIntegral},#{loginFailTimes},#{unlockDate},#{emailActivationSign},#{mobileActivationSign},#{companyVerifyState},#{verifyDepict},#{regCapital},#{contactPerson},#{contactMobile},#{verifyTypeId},#{certificateId}) 
+ </insert>  
+ <insert id="saveBatch" parameterType="java.util.List">  
+ INSERT INTO easymis_member(member_id,org_id,member_name,name,nickname,password,gender,birth,intro,comefrom,qq,phone,mobile,signature,id_card_no,bp_value,freezed_value,balance,money,frozen_money,sign_in_times,sign_in_date,sign_in_time_all,update_password_time,login_failure_count,session_id,register_channel,register_time,register_ip,last_login_time,last_login_ip,login_count,rank,upload_total,upload_size,upload_date,is_admin,is_self_admin,is_disabled,status,user_type,company_name,company_address,handler_office,company_telephone,company_url,company_logo,hobby,country_id,country_name,province_id,province_name,city_id,city_name,district_id,district_name,avatar,experience,rank_number,rank_change_date,now_integral,login_fail_times,unlock_date,email_activation_sign,mobile_activation_sign,company_verify_state,verify_depict,reg_capital,contact_person,contact_mobile,verify_type_id,certificate_id)values 
+  <foreach collection="list" item="bean" index="index" separator=","> 
+ (#{bean.memberId},#{bean.orgId},#{bean.memberName},#{bean.name},#{bean.nickname},#{bean.password},#{bean.gender},#{bean.birth},#{bean.intro},#{bean.comefrom},#{bean.qq},#{bean.phone},#{bean.mobile},#{bean.signature},#{bean.idCardNo},#{bean.bpValue},#{bean.freezedValue},#{bean.balance},#{bean.money},#{bean.frozenMoney},#{bean.signInTimes},#{bean.signInDate},#{bean.signInTimeAll},#{bean.updatePasswordTime},#{bean.loginFailureCount},#{bean.sessionId},#{bean.registerChannel},#{bean.registerTime},#{bean.registerIp},#{bean.lastLoginTime},#{bean.lastLoginIp},#{bean.loginCount},#{bean.rank},#{bean.uploadTotal},#{bean.uploadSize},#{bean.uploadDate},#{bean.isAdmin},#{bean.isSelfAdmin},#{bean.isDisabled},#{bean.status},#{bean.userType},#{bean.companyName},#{bean.companyAddress},#{bean.handlerOffice},#{bean.companyTelephone},#{bean.companyUrl},#{bean.companyLogo},#{bean.hobby},#{bean.countryId},#{bean.countryName},#{bean.provinceId},#{bean.provinceName},#{bean.cityId},#{bean.cityName},#{bean.districtId},#{bean.districtName},#{bean.avatar},#{bean.experience},#{bean.rankNumber},#{bean.rankChangeDate},#{bean.nowIntegral},#{bean.loginFailTimes},#{bean.unlockDate},#{bean.emailActivationSign},#{bean.mobileActivationSign},#{bean.companyVerifyState},#{bean.verifyDepict},#{bean.regCapital},#{bean.contactPerson},#{bean.contactMobile},#{bean.verifyTypeId},#{bean.certificateId}) 
+  </foreach> 
+ </insert>  
+ <update id="update" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.Member">  
+  UPDATE easymis_member SET member_id= #{memberId},org_id= #{orgId},member_name= #{memberName},name= #{name},nickname= #{nickname},password= #{password},gender= #{gender},birth= #{birth},intro= #{intro},comefrom= #{comefrom},qq= #{qq},phone= #{phone},mobile= #{mobile},signature= #{signature},id_card_no= #{idCardNo},bp_value= #{bpValue},freezed_value= #{freezedValue},balance= #{balance},money= #{money},frozen_money= #{frozenMoney},sign_in_times= #{signInTimes},sign_in_date= #{signInDate},sign_in_time_all= #{signInTimeAll},update_password_time= #{updatePasswordTime},login_failure_count= #{loginFailureCount},session_id= #{sessionId},register_channel= #{registerChannel},register_time= #{registerTime},register_ip= #{registerIp},last_login_time= #{lastLoginTime},last_login_ip= #{lastLoginIp},login_count= #{loginCount},rank= #{rank},upload_total= #{uploadTotal},upload_size= #{uploadSize},upload_date= #{uploadDate},is_admin= #{isAdmin},is_self_admin= #{isSelfAdmin},is_disabled= #{isDisabled},status= #{status},user_type= #{userType},company_name= #{companyName},company_address= #{companyAddress},handler_office= #{handlerOffice},company_telephone= #{companyTelephone},company_url= #{companyUrl},company_logo= #{companyLogo},hobby= #{hobby},country_id= #{countryId},country_name= #{countryName},province_id= #{provinceId},province_name= #{provinceName},city_id= #{cityId},city_name= #{cityName},district_id= #{districtId},district_name= #{districtName},avatar= #{avatar},experience= #{experience},rank_number= #{rankNumber},rank_change_date= #{rankChangeDate},now_integral= #{nowIntegral},login_fail_times= #{loginFailTimes},unlock_date= #{unlockDate},email_activation_sign= #{emailActivationSign},mobile_activation_sign= #{mobileActivationSign},company_verify_state= #{companyVerifyState},verify_depict= #{verifyDepict},reg_capital= #{regCapital},contact_person= #{contactPerson},contact_mobile= #{contactMobile},verify_type_id= #{verifyTypeId},certificate_id= #{certificateId} WHERE member_id= #{memberId} 
+ </update> 
+ <delete id="delete" parameterType="java.lang.String"> 
+  DELETE FROM easymis_member WHERE member_id = #{memberId} 
+ </delete>  
+ <update id="removeBatch" parameterType="java.util.List"> 
+  UPDATE easymis_member SET delete_status=2  WHERE member_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <update id="restoreBatch" parameterType="java.util.List"> 
+  UPDATE easymis_member SET delete_status=1  WHERE member_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <delete id="deleteBatch" parameterType="java.util.List"> 
+  DELETE FROM easymis_member WHERE member_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </delete>  
+ <select id="findById" parameterType="java.lang.String" resultMap="MemberResultMap">  
+  SELECT t.* FROM easymis_member t WHERE t.member_id = #{memberId} 
+ </select>  
+  <select id="findByMemberame" parameterType="java.lang.String" resultMap="MemberResultMap">  
+  SELECT t.* FROM easymis_member t WHERE t.member_name = #{membername} 
+ </select>  
+ <select id="findByIds" parameterType="java.util.List" resultMap="MemberResultMap">   
+  SELECT t.* FROM easymis_member t  WHERE member_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </select>  
+ </mapper>  
+ 

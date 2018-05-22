@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.mapper.HrmStaffInfoMapper">   
+ <resultMap id="HrmStaffInfoResultMap" type="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.HrmStaffInfo">  
+<result column="staff_id" property="staffId" jdbcType="VARCHAR"/> 
+<result column="name" property="name" jdbcType="VARCHAR"/> 
+<result column="org_id" property="orgId" jdbcType="VARCHAR"/> 
+<result column="org_name" property="orgName" jdbcType="VARCHAR"/> 
+<result column="filiale_org_id" property="filialeOrgId" jdbcType="VARCHAR"/> 
+<result column="filiale_org_name" property="filialeOrgName" jdbcType="VARCHAR"/> 
+<result column="role_id" property="roleId" jdbcType="VARCHAR"/> 
+<result column="department_id" property="departmentId" jdbcType="VARCHAR"/> 
+<result column="department_name" property="departmentName" jdbcType="VARCHAR"/> 
+<result column="position_id" property="positionId" jdbcType="VARCHAR"/> 
+<result column="position_name" property="positionName" jdbcType="VARCHAR"/> 
+<result column="grade_id" property="gradeId" jdbcType="VARCHAR"/> 
+<result column="member_id" property="memberId" jdbcType="VARCHAR"/> 
+<result column="work_no" property="workNo" jdbcType="VARCHAR"/> 
+<result column="photo_name" property="photoName" jdbcType="VARCHAR"/> 
+<result column="work_type" property="workType" jdbcType="VARCHAR"/> 
+<result column="ename" property="ename" jdbcType="VARCHAR"/> 
+<result column="card_no" property="cardNo" jdbcType="VARCHAR"/> 
+<result column="sex" property="sex" jdbcType="VARCHAR"/> 
+<result column="birth" property="birth" jdbcType="DATE"/> 
+<result column="is_lunar" property="isLunar" jdbcType="INTEGER"/> 
+<result column="age" property="age" jdbcType="VARCHAR"/> 
+<result column="native_place" property="nativePlace" jdbcType="VARCHAR"/> 
+<result column="domicile_place" property="domicilePlace" jdbcType="VARCHAR"/> 
+<result column="is_other_place" property="isOtherPlace" jdbcType="INTEGER"/> 
+<result column="nationality" property="nationality" jdbcType="VARCHAR"/> 
+<result column="marital_status" property="maritalStatus" jdbcType="INTEGER"/> 
+<result column="political_status" property="politicalStatus" jdbcType="INTEGER"/> 
+<result column="join_party_time" property="joinPartyTime" jdbcType="DATE"/> 
+<result column="phone" property="phone" jdbcType="VARCHAR"/> 
+<result column="mobile" property="mobile" jdbcType="VARCHAR"/> 
+<result column="email" property="email" jdbcType="VARCHAR"/> 
+<result column="email2" property="email2" jdbcType="VARCHAR"/> 
+<result column="qq" property="qq" jdbcType="VARCHAR"/> 
+<result column="home_address" property="homeAddress" jdbcType="VARCHAR"/> 
+<result column="other_contact" property="otherContact" jdbcType="VARCHAR"/> 
+<result column="job_start_date" property="jobStartDate" jdbcType="DATE"/> 
+<result column="job_age" property="jobAge" jdbcType="VARCHAR"/> 
+<result column="health" property="health" jdbcType="VARCHAR"/> 
+<result column="highest_school" property="highestSchool" jdbcType="VARCHAR"/> 
+<result column="highest_degree" property="highestDegree" jdbcType="VARCHAR"/> 
+<result column="graduation_date" property="graduationDate" jdbcType="DATE"/> 
+<result column="graduation_school" property="graduationSchool" jdbcType="VARCHAR"/> 
+<result column="major" property="major" jdbcType="VARCHAR"/> 
+<result column="computer_level" property="computerLevel" jdbcType="VARCHAR"/> 
+<result column="foreign_language1" property="foreignLanguage1" jdbcType="VARCHAR"/> 
+<result column="foreign_level1" property="foreignLevel1" jdbcType="VARCHAR"/> 
+<result column="foreign_language2" property="foreignLanguage2" jdbcType="VARCHAR"/> 
+<result column="foreign_level2" property="foreignLevel2" jdbcType="VARCHAR"/> 
+<result column="foreign_language3" property="foreignLanguage3" jdbcType="VARCHAR"/> 
+<result column="foreign_level3" property="foreignLevel3" jdbcType="VARCHAR"/> 
+<result column="skills" property="skills" jdbcType="VARCHAR"/> 
+<result column="occupation" property="occupation" jdbcType="VARCHAR"/> 
+<result column="administration_level" property="administrationLevel" jdbcType="VARCHAR"/> 
+<result column="present_position" property="presentPosition" jdbcType="VARCHAR"/> 
+<result column="work_begin_date" property="workBeginDate" jdbcType="DATE"/> 
+<result column="work_age" property="workAge" jdbcType="VARCHAR"/> 
+<result column="begin_salary_date" property="beginSalaryDate" jdbcType="DATE"/> 
+<result column="contract_begin_date" property="contractBeginDate" jdbcType="DATE"/> 
+<result column="contract_end_date" property="contractEndDate" jdbcType="DATE"/> 
+<result column="company" property="company" jdbcType="VARCHAR"/> 
+<result column="resume" property="resume" jdbcType="VARCHAR"/> 
+<result column="attachment_id" property="attachmentId" jdbcType="VARCHAR"/> 
+<result column="attachment_name" property="attachmentName" jdbcType="VARCHAR"/> 
+<result column="creator_id" property="creatorId" jdbcType="VARCHAR"/> 
+<result column="creator_name" property="creatorName" jdbcType="VARCHAR"/> 
+<result column="create_time" property="createTime" jdbcType="DATE"/> 
+<result column="update_id" property="updateId" jdbcType="VARCHAR"/> 
+<result column="update_name" property="updateName" jdbcType="VARCHAR"/> 
+<result column="update_time" property="updateTime" jdbcType="DATE"/> 
+<result column="leave_type" property="leaveType" jdbcType="INTEGER"/> 
+<result column="staff_type" property="staffType" jdbcType="INTEGER"/> 
+<result column="oa_status" property="oaStatus" jdbcType="INTEGER"/> 
+<result column="is_admin" property="isAdmin" jdbcType="INTEGER"/> 
+<result column="certificate" property="certificate" jdbcType="VARCHAR"/> 
+<result column="surety" property="surety" jdbcType="VARCHAR"/> 
+<result column="body_examine" property="bodyExamine" jdbcType="VARCHAR"/> 
+<result column="insure" property="insure" jdbcType="VARCHAR"/> 
+<result column="userdef1" property="userdef1" jdbcType="VARCHAR"/> 
+<result column="userdef2" property="userdef2" jdbcType="VARCHAR"/> 
+<result column="userdef3" property="userdef3" jdbcType="VARCHAR"/> 
+<result column="userdef4" property="userdef4" jdbcType="VARCHAR"/> 
+<result column="userdef5" property="userdef5" jdbcType="VARCHAR"/> 
+<result column="record_date" property="recordDate" jdbcType="DATE"/> 
+<result column="grade_name" property="gradeName" jdbcType="VARCHAR"/> 
+<result column="native_place2" property="nativePlace2" jdbcType="VARCHAR"/> 
+<result column="work_job" property="workJob" jdbcType="VARCHAR"/> 
+<result column="before_name" property="beforeName" jdbcType="VARCHAR"/> 
+<result column="birth_remind_date" property="birthRemindDate" jdbcType="VARCHAR"/> 
+<result column="bank1" property="bank1" jdbcType="VARCHAR"/> 
+<result column="bank_account1" property="bankAccount1" jdbcType="VARCHAR"/> 
+<result column="bank2" property="bank2" jdbcType="VARCHAR"/> 
+<result column="bank_account2" property="bankAccount2" jdbcType="VARCHAR"/> 
+<result column="blood_type" property="bloodType" jdbcType="VARCHAR"/> 
+<result column="is_experts" property="isExperts" jdbcType="INTEGER"/> 
+<result column="experts_info" property="expertsInfo" jdbcType="VARCHAR"/> 
+<result column="directly_under" property="directlyUnder" jdbcType="VARCHAR"/> 
+<result column="directly_superior" property="directlySuperior" jdbcType="VARCHAR"/> 
+<result column="part_time" property="partTime" jdbcType="VARCHAR"/> 
+<result column="research_results" property="researchResults" jdbcType="VARCHAR"/> 
+<result column="work_phone" property="workPhone" jdbcType="VARCHAR"/> 
+<result column="work_status" property="workStatus" jdbcType="INTEGER"/> 
+<result column="remark" property="remark" jdbcType="VARCHAR"/> 
+<result column="set_language" property="setLanguage" jdbcType="INTEGER"/> 
+</resultMap>  
+<select id="getList" parameterType="map" resultMap="HrmStaffInfoResultMap">   
+  SELECT t.* FROM hrm_staff_info t  
+ <where> 
+ <if test="staffId != null and staffId != '' ">  
+   t.staff_id = #{staffId}  
+  </if>  
+ <if test="name != null and name != '' ">  
+   and t.name = #{name}  
+  </if>  
+ <if test="orgId != null and orgId != '' ">  
+   and t.org_id = #{orgId}  
+  </if>  
+ <if test="orgName != null and orgName != '' ">  
+   and t.org_name = #{orgName}  
+  </if>  
+ <if test="filialeOrgId != null and filialeOrgId != '' ">  
+   and t.filiale_org_id = #{filialeOrgId}  
+  </if>  
+ <if test="filialeOrgName != null and filialeOrgName != '' ">  
+   and t.filiale_org_name = #{filialeOrgName}  
+  </if>  
+ <if test="roleId != null and roleId != '' ">  
+   and t.role_id = #{roleId}  
+  </if>  
+ <if test="departmentId != null and departmentId != '' ">  
+   and t.department_id = #{departmentId}  
+  </if>  
+ <if test="departmentName != null and departmentName != '' ">  
+   and t.department_name = #{departmentName}  
+  </if>  
+ <if test="positionId != null and positionId != '' ">  
+   and t.position_id = #{positionId}  
+  </if>  
+ <if test="positionName != null and positionName != '' ">  
+   and t.position_name = #{positionName}  
+  </if>  
+ <if test="gradeId != null and gradeId != '' ">  
+   and t.grade_id = #{gradeId}  
+  </if>  
+ <if test="memberId != null and memberId != '' ">  
+   and t.member_id = #{memberId}  
+  </if>  
+ <if test="workNo != null and workNo != '' ">  
+   and t.work_no = #{workNo}  
+  </if>  
+ <if test="photoName != null and photoName != '' ">  
+   and t.photo_name = #{photoName}  
+  </if>  
+ <if test="workType != null and workType != '' ">  
+   and t.work_type = #{workType}  
+  </if>  
+ <if test="ename != null and ename != '' ">  
+   and t.ename = #{ename}  
+  </if>  
+ <if test="cardNo != null and cardNo != '' ">  
+   and t.card_no = #{cardNo}  
+  </if>  
+ <if test="sex != null and sex != '' ">  
+   and t.sex = #{sex}  
+  </if>  
+ <if test="birth != null and birth != '' ">  
+   and t.birth = #{birth}  
+  </if>  
+ <if test="isLunar != null and isLunar != '' ">  
+   and t.is_lunar = #{isLunar}  
+  </if>  
+ <if test="age != null and age != '' ">  
+   and t.age = #{age}  
+  </if>  
+ <if test="nativePlace != null and nativePlace != '' ">  
+   and t.native_place = #{nativePlace}  
+  </if>  
+ <if test="domicilePlace != null and domicilePlace != '' ">  
+   and t.domicile_place = #{domicilePlace}  
+  </if>  
+ <if test="isOtherPlace != null and isOtherPlace != '' ">  
+   and t.is_other_place = #{isOtherPlace}  
+  </if>  
+ <if test="nationality != null and nationality != '' ">  
+   and t.nationality = #{nationality}  
+  </if>  
+ <if test="maritalStatus != null and maritalStatus != '' ">  
+   and t.marital_status = #{maritalStatus}  
+  </if>  
+ <if test="politicalStatus != null and politicalStatus != '' ">  
+   and t.political_status = #{politicalStatus}  
+  </if>  
+ <if test="joinPartyTime != null and joinPartyTime != '' ">  
+   and t.join_party_time = #{joinPartyTime}  
+  </if>  
+ <if test="phone != null and phone != '' ">  
+   and t.phone = #{phone}  
+  </if>  
+ <if test="mobile != null and mobile != '' ">  
+   and t.mobile = #{mobile}  
+  </if>  
+ <if test="email != null and email != '' ">  
+   and t.email = #{email}  
+  </if>  
+ <if test="email2 != null and email2 != '' ">  
+   and t.email2 = #{email2}  
+  </if>  
+ <if test="qq != null and qq != '' ">  
+   and t.qq = #{qq}  
+  </if>  
+ <if test="homeAddress != null and homeAddress != '' ">  
+   and t.home_address = #{homeAddress}  
+  </if>  
+ <if test="otherContact != null and otherContact != '' ">  
+   and t.other_contact = #{otherContact}  
+  </if>  
+ <if test="jobStartDate != null and jobStartDate != '' ">  
+   and t.job_start_date = #{jobStartDate}  
+  </if>  
+ <if test="jobAge != null and jobAge != '' ">  
+   and t.job_age = #{jobAge}  
+  </if>  
+ <if test="health != null and health != '' ">  
+   and t.health = #{health}  
+  </if>  
+ <if test="highestSchool != null and highestSchool != '' ">  
+   and t.highest_school = #{highestSchool}  
+  </if>  
+ <if test="highestDegree != null and highestDegree != '' ">  
+   and t.highest_degree = #{highestDegree}  
+  </if>  
+ <if test="graduationDate != null and graduationDate != '' ">  
+   and t.graduation_date = #{graduationDate}  
+  </if>  
+ <if test="graduationSchool != null and graduationSchool != '' ">  
+   and t.graduation_school = #{graduationSchool}  
+  </if>  
+ <if test="major != null and major != '' ">  
+   and t.major = #{major}  
+  </if>  
+ <if test="computerLevel != null and computerLevel != '' ">  
+   and t.computer_level = #{computerLevel}  
+  </if>  
+ <if test="foreignLanguage1 != null and foreignLanguage1 != '' ">  
+   and t.foreign_language1 = #{foreignLanguage1}  
+  </if>  
+ <if test="foreignLevel1 != null and foreignLevel1 != '' ">  
+   and t.foreign_level1 = #{foreignLevel1}  
+  </if>  
+ <if test="foreignLanguage2 != null and foreignLanguage2 != '' ">  
+   and t.foreign_language2 = #{foreignLanguage2}  
+  </if>  
+ <if test="foreignLevel2 != null and foreignLevel2 != '' ">  
+   and t.foreign_level2 = #{foreignLevel2}  
+  </if>  
+ <if test="foreignLanguage3 != null and foreignLanguage3 != '' ">  
+   and t.foreign_language3 = #{foreignLanguage3}  
+  </if>  
+ <if test="foreignLevel3 != null and foreignLevel3 != '' ">  
+   and t.foreign_level3 = #{foreignLevel3}  
+  </if>  
+ <if test="skills != null and skills != '' ">  
+   and t.skills = #{skills}  
+  </if>  
+ <if test="occupation != null and occupation != '' ">  
+   and t.occupation = #{occupation}  
+  </if>  
+ <if test="administrationLevel != null and administrationLevel != '' ">  
+   and t.administration_level = #{administrationLevel}  
+  </if>  
+ <if test="presentPosition != null and presentPosition != '' ">  
+   and t.present_position = #{presentPosition}  
+  </if>  
+ <if test="workBeginDate != null and workBeginDate != '' ">  
+   and t.work_begin_date = #{workBeginDate}  
+  </if>  
+ <if test="workAge != null and workAge != '' ">  
+   and t.work_age = #{workAge}  
+  </if>  
+ <if test="beginSalaryDate != null and beginSalaryDate != '' ">  
+   and t.begin_salary_date = #{beginSalaryDate}  
+  </if>  
+ <if test="contractBeginDate != null and contractBeginDate != '' ">  
+   and t.contract_begin_date = #{contractBeginDate}  
+  </if>  
+ <if test="contractEndDate != null and contractEndDate != '' ">  
+   and t.contract_end_date = #{contractEndDate}  
+  </if>  
+ <if test="company != null and company != '' ">  
+   and t.company = #{company}  
+  </if>  
+ <if test="resume != null and resume != '' ">  
+   and t.resume = #{resume}  
+  </if>  
+ <if test="attachmentId != null and attachmentId != '' ">  
+   and t.attachment_id = #{attachmentId}  
+  </if>  
+ <if test="attachmentName != null and attachmentName != '' ">  
+   and t.attachment_name = #{attachmentName}  
+  </if>  
+ <if test="creatorId != null and creatorId != '' ">  
+   and t.creator_id = #{creatorId}  
+  </if>  
+ <if test="creatorName != null and creatorName != '' ">  
+   and t.creator_name = #{creatorName}  
+  </if>  
+ <if test="createTime != null and createTime != '' ">  
+   and t.create_time = #{createTime}  
+  </if>  
+ <if test="updateId != null and updateId != '' ">  
+   and t.update_id = #{updateId}  
+  </if>  
+ <if test="updateName != null and updateName != '' ">  
+   and t.update_name = #{updateName}  
+  </if>  
+ <if test="updateTime != null and updateTime != '' ">  
+   and t.update_time = #{updateTime}  
+  </if>  
+ <if test="leaveType != null and leaveType != '' ">  
+   and t.leave_type = #{leaveType}  
+  </if>  
+ <if test="staffType != null and staffType != '' ">  
+   and t.staff_type = #{staffType}  
+  </if>  
+ <if test="oaStatus != null and oaStatus != '' ">  
+   and t.oa_status = #{oaStatus}  
+  </if>  
+ <if test="isAdmin != null and isAdmin != '' ">  
+   and t.is_admin = #{isAdmin}  
+  </if>  
+ <if test="certificate != null and certificate != '' ">  
+   and t.certificate = #{certificate}  
+  </if>  
+ <if test="surety != null and surety != '' ">  
+   and t.surety = #{surety}  
+  </if>  
+ <if test="bodyExamine != null and bodyExamine != '' ">  
+   and t.body_examine = #{bodyExamine}  
+  </if>  
+ <if test="insure != null and insure != '' ">  
+   and t.insure = #{insure}  
+  </if>  
+ <if test="userdef1 != null and userdef1 != '' ">  
+   and t.userdef1 = #{userdef1}  
+  </if>  
+ <if test="userdef2 != null and userdef2 != '' ">  
+   and t.userdef2 = #{userdef2}  
+  </if>  
+ <if test="userdef3 != null and userdef3 != '' ">  
+   and t.userdef3 = #{userdef3}  
+  </if>  
+ <if test="userdef4 != null and userdef4 != '' ">  
+   and t.userdef4 = #{userdef4}  
+  </if>  
+ <if test="userdef5 != null and userdef5 != '' ">  
+   and t.userdef5 = #{userdef5}  
+  </if>  
+ <if test="recordDate != null and recordDate != '' ">  
+   and t.record_date = #{recordDate}  
+  </if>  
+ <if test="gradeName != null and gradeName != '' ">  
+   and t.grade_name = #{gradeName}  
+  </if>  
+ <if test="nativePlace2 != null and nativePlace2 != '' ">  
+   and t.native_place2 = #{nativePlace2}  
+  </if>  
+ <if test="workJob != null and workJob != '' ">  
+   and t.work_job = #{workJob}  
+  </if>  
+ <if test="beforeName != null and beforeName != '' ">  
+   and t.before_name = #{beforeName}  
+  </if>  
+ <if test="birthRemindDate != null and birthRemindDate != '' ">  
+   and t.birth_remind_date = #{birthRemindDate}  
+  </if>  
+ <if test="bank1 != null and bank1 != '' ">  
+   and t.bank1 = #{bank1}  
+  </if>  
+ <if test="bankAccount1 != null and bankAccount1 != '' ">  
+   and t.bank_account1 = #{bankAccount1}  
+  </if>  
+ <if test="bank2 != null and bank2 != '' ">  
+   and t.bank2 = #{bank2}  
+  </if>  
+ <if test="bankAccount2 != null and bankAccount2 != '' ">  
+   and t.bank_account2 = #{bankAccount2}  
+  </if>  
+ <if test="bloodType != null and bloodType != '' ">  
+   and t.blood_type = #{bloodType}  
+  </if>  
+ <if test="isExperts != null and isExperts != '' ">  
+   and t.is_experts = #{isExperts}  
+  </if>  
+ <if test="expertsInfo != null and expertsInfo != '' ">  
+   and t.experts_info = #{expertsInfo}  
+  </if>  
+ <if test="directlyUnder != null and directlyUnder != '' ">  
+   and t.directly_under = #{directlyUnder}  
+  </if>  
+ <if test="directlySuperior != null and directlySuperior != '' ">  
+   and t.directly_superior = #{directlySuperior}  
+  </if>  
+ <if test="partTime != null and partTime != '' ">  
+   and t.part_time = #{partTime}  
+  </if>  
+ <if test="researchResults != null and researchResults != '' ">  
+   and t.research_results = #{researchResults}  
+  </if>  
+ <if test="workPhone != null and workPhone != '' ">  
+   and t.work_phone = #{workPhone}  
+  </if>  
+ <if test="workStatus != null and workStatus != '' ">  
+   and t.work_status = #{workStatus}  
+  </if>  
+ <if test="remark != null and remark != '' ">  
+   and t.remark = #{remark}  
+  </if>  
+ <if test="setLanguage != null and setLanguage != '' ">  
+   and t.set_language = #{setLanguage}  
+  </if>  
+  </where> 
+   
+ </select>  
+ <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.HrmStaffInfo">  
+ INSERT INTO hrm_staff_info(staff_id,name,org_id,org_name,filiale_org_id,filiale_org_name,role_id,department_id,department_name,position_id,position_name,grade_id,member_id,work_no,photo_name,work_type,ename,card_no,sex,birth,is_lunar,age,native_place,domicile_place,is_other_place,nationality,marital_status,political_status,join_party_time,phone,mobile,email,email2,qq,home_address,other_contact,job_start_date,job_age,health,highest_school,highest_degree,graduation_date,graduation_school,major,computer_level,foreign_language1,foreign_level1,foreign_language2,foreign_level2,foreign_language3,foreign_level3,skills,occupation,administration_level,present_position,work_begin_date,work_age,begin_salary_date,contract_begin_date,contract_end_date,company,resume,attachment_id,attachment_name,creator_id,creator_name,create_time,update_id,update_name,update_time,leave_type,staff_type,oa_status,is_admin,certificate,surety,body_examine,insure,userdef1,userdef2,userdef3,userdef4,userdef5,record_date,grade_name,native_place2,work_job,before_name,birth_remind_date,bank1,bank_account1,bank2,bank_account2,blood_type,is_experts,experts_info,directly_under,directly_superior,part_time,research_results,work_phone,work_status,remark,set_language)values(#{staffId},#{name},#{orgId},#{orgName},#{filialeOrgId},#{filialeOrgName},#{roleId},#{departmentId},#{departmentName},#{positionId},#{positionName},#{gradeId},#{memberId},#{workNo},#{photoName},#{workType},#{ename},#{cardNo},#{sex},#{birth},#{isLunar},#{age},#{nativePlace},#{domicilePlace},#{isOtherPlace},#{nationality},#{maritalStatus},#{politicalStatus},#{joinPartyTime},#{phone},#{mobile},#{email},#{email2},#{qq},#{homeAddress},#{otherContact},#{jobStartDate},#{jobAge},#{health},#{highestSchool},#{highestDegree},#{graduationDate},#{graduationSchool},#{major},#{computerLevel},#{foreignLanguage1},#{foreignLevel1},#{foreignLanguage2},#{foreignLevel2},#{foreignLanguage3},#{foreignLevel3},#{skills},#{occupation},#{administrationLevel},#{presentPosition},#{workBeginDate},#{workAge},#{beginSalaryDate},#{contractBeginDate},#{contractEndDate},#{company},#{resume},#{attachmentId},#{attachmentName},#{creatorId},#{creatorName},#{createTime},#{updateId},#{updateName},#{updateTime},#{leaveType},#{staffType},#{oaStatus},#{isAdmin},#{certificate},#{surety},#{bodyExamine},#{insure},#{userdef1},#{userdef2},#{userdef3},#{userdef4},#{userdef5},#{recordDate},#{gradeName},#{nativePlace2},#{workJob},#{beforeName},#{birthRemindDate},#{bank1},#{bankAccount1},#{bank2},#{bankAccount2},#{bloodType},#{isExperts},#{expertsInfo},#{directlyUnder},#{directlySuperior},#{partTime},#{researchResults},#{workPhone},#{workStatus},#{remark},#{setLanguage}) 
+ </insert>  
+ <insert id="saveBatch" parameterType="java.util.List">  
+ INSERT INTO hrm_staff_info(staff_id,name,org_id,org_name,filiale_org_id,filiale_org_name,role_id,department_id,department_name,position_id,position_name,grade_id,member_id,work_no,photo_name,work_type,ename,card_no,sex,birth,is_lunar,age,native_place,domicile_place,is_other_place,nationality,marital_status,political_status,join_party_time,phone,mobile,email,email2,qq,home_address,other_contact,job_start_date,job_age,health,highest_school,highest_degree,graduation_date,graduation_school,major,computer_level,foreign_language1,foreign_level1,foreign_language2,foreign_level2,foreign_language3,foreign_level3,skills,occupation,administration_level,present_position,work_begin_date,work_age,begin_salary_date,contract_begin_date,contract_end_date,company,resume,attachment_id,attachment_name,creator_id,creator_name,create_time,update_id,update_name,update_time,leave_type,staff_type,oa_status,is_admin,certificate,surety,body_examine,insure,userdef1,userdef2,userdef3,userdef4,userdef5,record_date,grade_name,native_place2,work_job,before_name,birth_remind_date,bank1,bank_account1,bank2,bank_account2,blood_type,is_experts,experts_info,directly_under,directly_superior,part_time,research_results,work_phone,work_status,remark,set_language)values 
+  <foreach collection="list" item="bean" index="index" separator=","> 
+ (#{bean.staffId},#{bean.name},#{bean.orgId},#{bean.orgName},#{bean.filialeOrgId},#{bean.filialeOrgName},#{bean.roleId},#{bean.departmentId},#{bean.departmentName},#{bean.positionId},#{bean.positionName},#{bean.gradeId},#{bean.memberId},#{bean.workNo},#{bean.photoName},#{bean.workType},#{bean.ename},#{bean.cardNo},#{bean.sex},#{bean.birth},#{bean.isLunar},#{bean.age},#{bean.nativePlace},#{bean.domicilePlace},#{bean.isOtherPlace},#{bean.nationality},#{bean.maritalStatus},#{bean.politicalStatus},#{bean.joinPartyTime},#{bean.phone},#{bean.mobile},#{bean.email},#{bean.email2},#{bean.qq},#{bean.homeAddress},#{bean.otherContact},#{bean.jobStartDate},#{bean.jobAge},#{bean.health},#{bean.highestSchool},#{bean.highestDegree},#{bean.graduationDate},#{bean.graduationSchool},#{bean.major},#{bean.computerLevel},#{bean.foreignLanguage1},#{bean.foreignLevel1},#{bean.foreignLanguage2},#{bean.foreignLevel2},#{bean.foreignLanguage3},#{bean.foreignLevel3},#{bean.skills},#{bean.occupation},#{bean.administrationLevel},#{bean.presentPosition},#{bean.workBeginDate},#{bean.workAge},#{bean.beginSalaryDate},#{bean.contractBeginDate},#{bean.contractEndDate},#{bean.company},#{bean.resume},#{bean.attachmentId},#{bean.attachmentName},#{bean.creatorId},#{bean.creatorName},#{bean.createTime},#{bean.updateId},#{bean.updateName},#{bean.updateTime},#{bean.leaveType},#{bean.staffType},#{bean.oaStatus},#{bean.isAdmin},#{bean.certificate},#{bean.surety},#{bean.bodyExamine},#{bean.insure},#{bean.userdef1},#{bean.userdef2},#{bean.userdef3},#{bean.userdef4},#{bean.userdef5},#{bean.recordDate},#{bean.gradeName},#{bean.nativePlace2},#{bean.workJob},#{bean.beforeName},#{bean.birthRemindDate},#{bean.bank1},#{bean.bankAccount1},#{bean.bank2},#{bean.bankAccount2},#{bean.bloodType},#{bean.isExperts},#{bean.expertsInfo},#{bean.directlyUnder},#{bean.directlySuperior},#{bean.partTime},#{bean.researchResults},#{bean.workPhone},#{bean.workStatus},#{bean.remark},#{bean.setLanguage}) 
+  </foreach> 
+ </insert>  
+ <update id="update" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.HrmStaffInfo">  
+  UPDATE hrm_staff_info SET staff_id= #{staffId},name= #{name},org_id= #{orgId},org_name= #{orgName},filiale_org_id= #{filialeOrgId},filiale_org_name= #{filialeOrgName},role_id= #{roleId},department_id= #{departmentId},department_name= #{departmentName},position_id= #{positionId},position_name= #{positionName},grade_id= #{gradeId},member_id= #{memberId},work_no= #{workNo},photo_name= #{photoName},work_type= #{workType},ename= #{ename},card_no= #{cardNo},sex= #{sex},birth= #{birth},is_lunar= #{isLunar},age= #{age},native_place= #{nativePlace},domicile_place= #{domicilePlace},is_other_place= #{isOtherPlace},nationality= #{nationality},marital_status= #{maritalStatus},political_status= #{politicalStatus},join_party_time= #{joinPartyTime},phone= #{phone},mobile= #{mobile},email= #{email},email2= #{email2},qq= #{qq},home_address= #{homeAddress},other_contact= #{otherContact},job_start_date= #{jobStartDate},job_age= #{jobAge},health= #{health},highest_school= #{highestSchool},highest_degree= #{highestDegree},graduation_date= #{graduationDate},graduation_school= #{graduationSchool},major= #{major},computer_level= #{computerLevel},foreign_language1= #{foreignLanguage1},foreign_level1= #{foreignLevel1},foreign_language2= #{foreignLanguage2},foreign_level2= #{foreignLevel2},foreign_language3= #{foreignLanguage3},foreign_level3= #{foreignLevel3},skills= #{skills},occupation= #{occupation},administration_level= #{administrationLevel},present_position= #{presentPosition},work_begin_date= #{workBeginDate},work_age= #{workAge},begin_salary_date= #{beginSalaryDate},contract_begin_date= #{contractBeginDate},contract_end_date= #{contractEndDate},company= #{company},resume= #{resume},attachment_id= #{attachmentId},attachment_name= #{attachmentName},creator_id= #{creatorId},creator_name= #{creatorName},create_time= #{createTime},update_id= #{updateId},update_name= #{updateName},update_time= #{updateTime},leave_type= #{leaveType},staff_type= #{staffType},oa_status= #{oaStatus},is_admin= #{isAdmin},certificate= #{certificate},surety= #{surety},body_examine= #{bodyExamine},insure= #{insure},userdef1= #{userdef1},userdef2= #{userdef2},userdef3= #{userdef3},userdef4= #{userdef4},userdef5= #{userdef5},record_date= #{recordDate},grade_name= #{gradeName},native_place2= #{nativePlace2},work_job= #{workJob},before_name= #{beforeName},birth_remind_date= #{birthRemindDate},bank1= #{bank1},bank_account1= #{bankAccount1},bank2= #{bank2},bank_account2= #{bankAccount2},blood_type= #{bloodType},is_experts= #{isExperts},experts_info= #{expertsInfo},directly_under= #{directlyUnder},directly_superior= #{directlySuperior},part_time= #{partTime},research_results= #{researchResults},work_phone= #{workPhone},work_status= #{workStatus},remark= #{remark},set_language= #{setLanguage} WHERE staff_id= #{staffId} 
+ </update> 
+ <delete id="delete" parameterType="java.lang.String"> 
+  DELETE FROM hrm_staff_info WHERE staff_id = #{staffId} 
+ </delete>  
+ <update id="removeBatch" parameterType="java.util.List"> 
+  UPDATE hrm_staff_info SET delete_status=2  WHERE staff_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <update id="restoreBatch" parameterType="java.util.List"> 
+  UPDATE hrm_staff_info SET delete_status=1  WHERE staff_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <delete id="deleteBatch" parameterType="java.util.List"> 
+  DELETE FROM hrm_staff_info WHERE staff_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </delete>  
+ <select id="findById" parameterType="java.lang.String" resultMap="HrmStaffInfoResultMap">  
+  SELECT t.* FROM hrm_staff_info t WHERE t.staff_id = #{staffId} 
+ </select>  
+ <select id="findByIds" parameterType="java.util.List" resultMap="HrmStaffInfoResultMap">   
+  SELECT t.* FROM hrm_staff_info t  WHERE staff_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </select>  
+ </mapper>  
+ 

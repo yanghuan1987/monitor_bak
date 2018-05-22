@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.mapper.AirQualityLvlForecastStatisticsMapper">
+ <resultMap id="areaProvince" type="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.AreaProvince">
+    <id column="pid" property="pid" jdbcType="BIGINT"/>
+    <result column="ProvinceCode" property="provinceCode" jdbcType="INTEGER"/>
+    <result column="ProvinceName" property="provinceName" jdbcType="VARCHAR"/>
+    <result column="ProvinceJC" property="provinceJC" jdbcType="VARCHAR"/>
+    <result column="OrderP" property="orderP" jdbcType="INTEGER"/>
+    <result column="IsMunicipality" property="isMunicipality" jdbcType="INTEGER"/>
+    <collection property="provinceZones" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.AreaZone">
+        <id column="zid" property="zid" jdbcType="BIGINT"/>
+        <result column="ZoneCode" property="zoneCode" jdbcType="INTEGER"/>
+        <result column="ZoneName" property="zoneName" jdbcType="VARCHAR"/>
+        <result column="ZoneJC" property="zoneJC" jdbcType="VARCHAR"/>
+        <result column="OrderP" property="orderP" jdbcType="INTEGER"/>
+        <result column="ProvinceCode" property="provinceCode" jdbcType="INTEGER"/>
+        <collection property="airQualityLvlForecastStatisticsList" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.AirQualityLvlForecastStatistics">
+            <id column="aid" property="aid" jdbcType="BIGINT"/>
+            <result column="ZoneId" property="zoneId" jdbcType="BIGINT"/>
+            <result column="CityCode" property="cityCode" jdbcType="INTEGER"/>
+            <result column="CreatDate" property="creatDate" jdbcType="TIMESTAMP"/>
+            <result column="ForecastDate" property="forecastDate" jdbcType="TIMESTAMP"/>
+            <result column="CreatName" property="creatName" jdbcType="VARCHAR"/>
+            <result column="LevelName" property="levelName" jdbcType="VARCHAR"/>
+            <result column="LevelCode" property="levelCode" jdbcType="VARCHAR"/>
+        </collection>
+    </collection>
+</resultMap>  
+<select id="getList" parameterType="java.util.Date" resultMap="areaProvince">
+    SELECT
+    *
+    FROM
+    area_province AS p
+    LEFT JOIN area_zone AS z ON p.ProvinceCode = z.ProvinceCode
+    LEFT JOIN air_quality_lvl_forecast_statistics AS a ON z.zid = a.ZoneId
+    AND DATE_FORMAT(a.CreatDate, '%Y-%m-%d') = DATE_FORMAT(#{date}, '%Y-%m-%d')
+    ORDER BY p.OrderP ASC,z.OrderP ASC,a.ForecastDate ASC;
+ </select>  
+ <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.AirQualityLvlForecastStatistics">
+ INSERT INTO air_quality_lvl_forecast_statistics(
+  ZoneId,CityCode,CreatDate,ForecastDate,CreatName,LevelName,LevelCode
+  )values(#{zoneId},#{cityCode},#{creatDate},#{forecastDate},#{creatName},#{levelName},#{levelCode})
+ </insert>  
+ <insert id="saveBatch" parameterType="java.util.List">  
+ INSERT INTO air_quality_lvl_forecast_statistics(
+     ZoneId,CityCode,CreatDate,ForecastDate,CreatName,LevelName,LevelCode)values
+  <foreach collection="list" item="bean" index="index" separator=","> 
+ (#{bean.zoneId},#{bean.cityCode},#{bean.creatDate},#{bean.forecastDate},#{bean.creatName},#{bean.levelName},#{bean.levelCode})
+  </foreach> 
+ </insert>  
+ <update id="update" parameterType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.AirQualityLvlForecastStatistics">
+  UPDATE air_quality_lvl_forecast_statistics SET
+  ZoneId= #{zoneId},
+  CityCode= #{cityCode},
+  CreatDate= #{creatDate},
+  ForecastDate= #{forecastDate},
+  CreatName= #{creatName},
+  LevelName= #{levelName},
+  LevelCode= #{levelCode}
+   WHERE
+   DATE_FORMAT(CreatDate, '%Y-%m-%d') = DATE_FORMAT(#{date}, '%Y-%m-%d')
+ </update> 
+ <delete id="delete" parameterType="java.util.Date">
+  DELETE FROM air_quality_lvl_forecast_statistics WHERE DATE_FORMAT(CreatDate, '%Y-%m-%d') = DATE_FORMAT(#{date}, '%Y-%m-%d')
+ </delete>  
+ <update id="removeBatch" parameterType="java.util.List"> 
+  UPDATE air_quality_lvl_forecast_statistics SET LevelCode=2  WHERE aid in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <update id="restoreBatch" parameterType="java.util.List"> 
+  UPDATE air_quality_lvl_forecast_statistics SET LevelCode=1  WHERE aid in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <delete id="deleteBatch" parameterType="java.util.List"> 
+  DELETE FROM air_quality_lvl_forecast_statistics WHERE aid in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </delete>  
+ </mapper>
+ 

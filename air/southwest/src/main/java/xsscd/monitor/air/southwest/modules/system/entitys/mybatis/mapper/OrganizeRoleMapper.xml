@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.mapper.OrganizeRoleMapper">   
+ <resultMap id="OrganizeRoleResultMap" type="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeRole">  
+<result column="role_id" property="roleId" jdbcType="VARCHAR"/> 
+<result column="org_id" property="orgId" jdbcType="VARCHAR"/> 
+<result column="role_name" property="roleName" jdbcType="VARCHAR"/> 
+<result column="is_super" property="isSuper" jdbcType="INTEGER"/> 
+<result column="level" property="level" jdbcType="INTEGER"/> 
+<result column="parent_id" property="parentId" jdbcType="VARCHAR"/> 
+<result column="manager" property="manager" jdbcType="VARCHAR"/> 
+<result column="manager_id" property="managerId" jdbcType="VARCHAR"/> 
+<result column="priority" property="priority" jdbcType="INTEGER"/> 
+<result column="depict" property="depict" jdbcType="VARCHAR"/> 
+</resultMap>  
+<select id="getList" parameterType="map" resultMap="OrganizeRoleResultMap">   
+  SELECT t.* FROM organize_role t  
+ <where> 
+ <if test="roleId != null and roleId != '' ">  
+   t.role_id = #{roleId}  
+  </if>  
+ <if test="orgId != null and orgId != '' ">  
+   and t.org_id = #{orgId}  
+  </if>  
+ <if test="roleName != null and roleName != '' ">  
+   and t.role_name = #{roleName}  
+  </if>  
+ <if test="isSuper != null and isSuper != '' ">  
+   and t.is_super = #{isSuper}  
+  </if>  
+ <if test="level != null and level != '' ">  
+   and t.level = #{level}  
+  </if>  
+ <if test="parentId != null and parentId != '' ">  
+   and t.parent_id = #{parentId}  
+  </if>  
+ <if test="manager != null and manager != '' ">  
+   and t.manager = #{manager}  
+  </if>  
+ <if test="managerId != null and managerId != '' ">  
+   and t.manager_id = #{managerId}  
+  </if>  
+ <if test="priority != null and priority != '' ">  
+   and t.priority = #{priority}  
+  </if>  
+ <if test="depict != null and depict != '' ">  
+   and t.depict = #{depict}  
+  </if>  
+  </where> 
+   
+ </select>  
+ <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeRole">  
+ INSERT INTO organize_role(role_id,org_id,role_name,is_super,level,parent_id,manager,manager_id,priority,depict)values(#{roleId},#{orgId},#{roleName},#{isSuper},#{level},#{parentId},#{manager},#{managerId},#{priority},#{depict}) 
+ </insert>  
+ <insert id="saveBatch" parameterType="java.util.List">  
+ INSERT INTO organize_role(role_id,org_id,role_name,is_super,level,parent_id,manager,manager_id,priority,depict)values 
+  <foreach collection="list" item="bean" index="index" separator=","> 
+ (#{bean.roleId},#{bean.orgId},#{bean.roleName},#{bean.isSuper},#{bean.level},#{bean.parentId},#{bean.manager},#{bean.managerId},#{bean.priority},#{bean.depict}) 
+  </foreach> 
+ </insert>  
+ <update id="update" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeRole">  
+  UPDATE organize_role SET role_id= #{roleId},org_id= #{orgId},role_name= #{roleName},is_super= #{isSuper},level= #{level},parent_id= #{parentId},manager= #{manager},manager_id= #{managerId},priority= #{priority},depict= #{depict} WHERE role_id= #{roleId} 
+ </update> 
+ <delete id="delete" parameterType="java.lang.String"> 
+  DELETE FROM organize_role WHERE role_id = #{roleId} 
+ </delete>  
+ <update id="removeBatch" parameterType="java.util.List"> 
+  UPDATE organize_role SET delete_status=2  WHERE role_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <update id="restoreBatch" parameterType="java.util.List"> 
+  UPDATE organize_role SET delete_status=1  WHERE role_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <delete id="deleteBatch" parameterType="java.util.List"> 
+  DELETE FROM organize_role WHERE role_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </delete>  
+ <select id="findById" parameterType="java.lang.String" resultMap="OrganizeRoleResultMap">  
+  SELECT t.* FROM organize_role t WHERE t.role_id = #{roleId} 
+ </select>  
+ <select id="findByIds" parameterType="java.util.List" resultMap="OrganizeRoleResultMap">   
+  SELECT t.* FROM organize_role t  WHERE role_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </select>  
+ </mapper>  
+ 

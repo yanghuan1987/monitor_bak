@@ -1,0 +1,55 @@
+system:
+    domain: http://localhost
+    email: 535782704@qq.com
+    emailpwd:
+    name: easymis
+    icp: ICP\u8BC1\uFF1A\u7CA4ICP\u590716078942\u53F7-1
+    auth: Deament
+server:
+    tomcat:
+        access_log_enabled: true
+        basedir: target/tomcat
+spring:
+    thymeleaf:
+        cache: false
+    h2:
+        console:
+            enabled: true
+    jpa:
+        open-in-view: true
+##多数据源
+datasource:
+  #主库
+  
+#    master:
+#    jdbcUrl: jdbc:mysql://10.190.1.8:3306/easymis?useUnicode=true&characterEncoding=utf-8
+#    username: admin1
+#    password: admin
+#    driver-class-name: com.mysql.jdbc.Driver
+  
+  master:
+    jdbcUrl: jdbc:mysql://172.16.1.156:3306/easymis?useUnicode=true&characterEncoding=utf-8
+#    jdbcUrl: jdbc:mysql://localhost:3306/easymis?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  #从库
+  slave:
+    #并非url而是jdbcUrl(因为这个在获取数据源时一直报错，看了DataSource的属性才知道是jdbcUrl)
+    jdbcUrl: jdbc:sqlserver://172.16.1.16:1433;DatabaseName=AirProvinceDB
+    username: sa
+    password: admin@123
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#配置日志
+logging:
+  #采用相对路径方式将日志文件输出到
+    file: log\southwest.log
+    pattern:
+        console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+        file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  #配置日志文件路径
+    level:
+        root: debug
+        xsscd.monitor.air.southwest: debug #不同目录下的日志可配置不同级别
+        org.springfromework.web: ERROR
+        org.hibernate: error

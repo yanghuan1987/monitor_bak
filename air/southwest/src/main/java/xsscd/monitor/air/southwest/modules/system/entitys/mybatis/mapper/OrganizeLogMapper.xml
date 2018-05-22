@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.mapper.OrganizeLogMapper">   
+ <resultMap id="OrganizeLogResultMap" type="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeLog">  
+<result column="log_id" property="logId" jdbcType="INTEGER"/> 
+<result column="org_id" property="orgId" jdbcType="VARCHAR"/> 
+<result column="org_name" property="orgName" jdbcType="VARCHAR"/> 
+<result column="username" property="username" jdbcType="VARCHAR"/> 
+<result column="site_id" property="siteId" jdbcType="VARCHAR"/> 
+<result column="category" property="category" jdbcType="VARCHAR"/> 
+<result column="create_time" property="createTime" jdbcType="DATE"/> 
+<result column="ip" property="ip" jdbcType="VARCHAR"/> 
+<result column="url" property="url" jdbcType="VARCHAR"/> 
+<result column="operation" property="operation" jdbcType="VARCHAR"/> 
+<result column="method" property="method" jdbcType="VARCHAR"/> 
+<result column="params" property="params" jdbcType="VARCHAR"/> 
+<result column="session_id" property="sessionId" jdbcType="VARCHAR"/> 
+<result column="login_failure_count" property="loginFailureCount" jdbcType="INTEGER"/> 
+<result column="lock_time" property="lockTime" jdbcType="DATE"/> 
+<result column="run_time" property="runTime" jdbcType="INTEGER"/> 
+<result column="status" property="status" jdbcType="INTEGER"/> 
+</resultMap>  
+<select id="getList" parameterType="map" resultMap="OrganizeLogResultMap">   
+  SELECT t.* FROM organize_log t  
+ <where> 
+ <if test="logId != null and logId != '' ">  
+   t.log_id = #{logId}  
+  </if>  
+ <if test="orgId != null and orgId != '' ">  
+   and t.org_id = #{orgId}  
+  </if>  
+ <if test="orgName != null and orgName != '' ">  
+   and t.org_name = #{orgName}  
+  </if>  
+ <if test="username != null and username != '' ">  
+   and t.username = #{username}  
+  </if>  
+ <if test="siteId != null and siteId != '' ">  
+   and t.site_id = #{siteId}  
+  </if>  
+ <if test="category != null and category != '' ">  
+   and t.category = #{category}  
+  </if>  
+ <if test="createTime != null and createTime != '' ">  
+   and t.create_time = #{createTime}  
+  </if>  
+ <if test="ip != null and ip != '' ">  
+   and t.ip = #{ip}  
+  </if>  
+ <if test="url != null and url != '' ">  
+   and t.url = #{url}  
+  </if>  
+ <if test="operation != null and operation != '' ">  
+   and t.operation = #{operation}  
+  </if>  
+ <if test="method != null and method != '' ">  
+   and t.method = #{method}  
+  </if>  
+ <if test="params != null and params != '' ">  
+   and t.params = #{params}  
+  </if>  
+ <if test="sessionId != null and sessionId != '' ">  
+   and t.session_id = #{sessionId}  
+  </if>  
+ <if test="loginFailureCount != null and loginFailureCount != '' ">  
+   and t.login_failure_count = #{loginFailureCount}  
+  </if>  
+ <if test="lockTime != null and lockTime != '' ">  
+   and t.lock_time = #{lockTime}  
+  </if>  
+ <if test="runTime != null and runTime != '' ">  
+   and t.run_time = #{runTime}  
+  </if>  
+ <if test="status != null and status != '' ">  
+   and t.status = #{status}  
+  </if>  
+  </where> 
+   
+ </select>  
+ <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeLog">  
+ INSERT INTO organize_log(log_id,org_id,org_name,username,site_id,category,create_time,ip,url,operation,method,params,session_id,login_failure_count,lock_time,run_time,status)values(#{logId},#{orgId},#{orgName},#{username},#{siteId},#{category},#{createTime},#{ip},#{url},#{operation},#{method},#{params},#{sessionId},#{loginFailureCount},#{lockTime},#{runTime},#{status}) 
+ </insert>  
+ <insert id="saveBatch" parameterType="java.util.List">  
+ INSERT INTO organize_log(log_id,org_id,org_name,username,site_id,category,create_time,ip,url,operation,method,params,session_id,login_failure_count,lock_time,run_time,status)values 
+  <foreach collection="list" item="bean" index="index" separator=","> 
+ (#{bean.logId},#{bean.orgId},#{bean.orgName},#{bean.username},#{bean.siteId},#{bean.category},#{bean.createTime},#{bean.ip},#{bean.url},#{bean.operation},#{bean.method},#{bean.params},#{bean.sessionId},#{bean.loginFailureCount},#{bean.lockTime},#{bean.runTime},#{bean.status}) 
+  </foreach> 
+ </insert>  
+ <update id="update" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeLog">  
+  UPDATE organize_log SET log_id= #{logId},org_id= #{orgId},org_name= #{orgName},username= #{username},site_id= #{siteId},category= #{category},create_time= #{createTime},ip= #{ip},url= #{url},operation= #{operation},method= #{method},params= #{params},session_id= #{sessionId},login_failure_count= #{loginFailureCount},lock_time= #{lockTime},run_time= #{runTime},status= #{status} WHERE log_id= #{logId} 
+ </update> 
+ <delete id="delete" parameterType="java.lang.String"> 
+  DELETE FROM organize_log WHERE log_id = #{logId} 
+ </delete>  
+ <update id="removeBatch" parameterType="java.util.List"> 
+  UPDATE organize_log SET delete_status=2  WHERE log_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <update id="restoreBatch" parameterType="java.util.List"> 
+  UPDATE organize_log SET delete_status=1  WHERE log_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <delete id="deleteBatch" parameterType="java.util.List"> 
+  DELETE FROM organize_log WHERE log_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </delete>  
+ <select id="findById" parameterType="java.lang.String" resultMap="OrganizeLogResultMap">  
+  SELECT t.* FROM organize_log t WHERE t.log_id = #{logId} 
+ </select>  
+ <select id="findByIds" parameterType="java.util.List" resultMap="OrganizeLogResultMap">   
+  SELECT t.* FROM organize_log t  WHERE log_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </select>  
+ </mapper>  
+ 

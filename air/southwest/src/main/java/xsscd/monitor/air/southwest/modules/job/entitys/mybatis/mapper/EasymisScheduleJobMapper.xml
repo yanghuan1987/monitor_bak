@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.job.entitys.mybatis.mapper.EasymisScheduleJobMapper">   
+ <resultMap id="EasymisScheduleJobResultMap" type="xsscd.monitor.air.southwest.modules.job.entitys.mybatis.dto.EasymisScheduleJob">  
+<result column="job_id" property="jobId" jdbcType="VARCHAR"/> 
+<result column="org_id" property="orgId" jdbcType="VARCHAR"/> 
+<result column="bean_name" property="beanName" jdbcType="VARCHAR"/> 
+<result column="method_name" property="methodName" jdbcType="VARCHAR"/> 
+<result column="params" property="params" jdbcType="VARCHAR"/> 
+<result column="cron_expression" property="cronExpression" jdbcType="VARCHAR"/> 
+<result column="status" property="status" jdbcType="INTEGER"/> 
+<result column="remark" property="remark" jdbcType="VARCHAR"/> 
+<result column="creator_id" property="creatorId" jdbcType="VARCHAR"/> 
+<result column="creator_name" property="creatorName" jdbcType="VARCHAR"/> 
+<result column="create_time" property="createTime" jdbcType="DATE"/> 
+<result column="update_id" property="updateId" jdbcType="VARCHAR"/> 
+<result column="update_name" property="updateName" jdbcType="VARCHAR"/> 
+<result column="update_time" property="updateTime" jdbcType="DATE"/> 
+</resultMap>  
+<select id="getList" parameterType="map" resultMap="EasymisScheduleJobResultMap">   
+  SELECT t.* FROM easymis_schedule_job t  
+ <where> 
+ <if test="jobId != null and jobId != '' ">  
+   t.job_id = #{jobId}  
+  </if>  
+ <if test="orgId != null and orgId != '' ">  
+   and t.org_id = #{orgId}  
+  </if>  
+ <if test="beanName != null and beanName != '' ">  
+   and t.bean_name = #{beanName}  
+  </if>  
+ <if test="methodName != null and methodName != '' ">  
+   and t.method_name = #{methodName}  
+  </if>  
+ <if test="params != null and params != '' ">  
+   and t.params = #{params}  
+  </if>  
+ <if test="cronExpression != null and cronExpression != '' ">  
+   and t.cron_expression = #{cronExpression}  
+  </if>  
+ <if test="status != null and status != '' ">  
+   and t.status = #{status}  
+  </if>  
+ <if test="remark != null and remark != '' ">  
+   and t.remark = #{remark}  
+  </if>  
+ <if test="creatorId != null and creatorId != '' ">  
+   and t.creator_id = #{creatorId}  
+  </if>  
+ <if test="creatorName != null and creatorName != '' ">  
+   and t.creator_name = #{creatorName}  
+  </if>  
+ <if test="createTime != null and createTime != '' ">  
+   and t.create_time = #{createTime}  
+  </if>  
+ <if test="updateId != null and updateId != '' ">  
+   and t.update_id = #{updateId}  
+  </if>  
+ <if test="updateName != null and updateName != '' ">  
+   and t.update_name = #{updateName}  
+  </if>  
+ <if test="updateTime != null and updateTime != '' ">  
+   and t.update_time = #{updateTime}  
+  </if>  
+  </where> 
+   
+ </select>  
+ <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.job.entitys.mybatis.dto.EasymisScheduleJob">  
+ INSERT INTO easymis_schedule_job(job_id,org_id,bean_name,method_name,params,cron_expression,status,remark,creator_id,creator_name,create_time,update_id,update_name,update_time)values(#{jobId},#{orgId},#{beanName},#{methodName},#{params},#{cronExpression},#{status},#{remark},#{creatorId},#{creatorName},#{createTime},#{updateId},#{updateName},#{updateTime}) 
+ </insert>  
+ <insert id="saveBatch" parameterType="java.util.List">  
+ INSERT INTO easymis_schedule_job(job_id,org_id,bean_name,method_name,params,cron_expression,status,remark,creator_id,creator_name,create_time,update_id,update_name,update_time)values 
+  <foreach collection="list" item="bean" index="index" separator=","> 
+ (#{bean.jobId},#{bean.orgId},#{bean.beanName},#{bean.methodName},#{bean.params},#{bean.cronExpression},#{bean.status},#{bean.remark},#{bean.creatorId},#{bean.creatorName},#{bean.createTime},#{bean.updateId},#{bean.updateName},#{bean.updateTime}) 
+  </foreach> 
+ </insert>  
+ <update id="update" parameterType="xsscd.monitor.air.southwest.modules.job.entitys.mybatis.dto.EasymisScheduleJob">  
+  UPDATE easymis_schedule_job SET job_id= #{jobId},org_id= #{orgId},bean_name= #{beanName},method_name= #{methodName},params= #{params},cron_expression= #{cronExpression},status= #{status},remark= #{remark},creator_id= #{creatorId},creator_name= #{creatorName},create_time= #{createTime},update_id= #{updateId},update_name= #{updateName},update_time= #{updateTime} WHERE job_id= #{jobId} 
+ </update> 
+ <delete id="delete" parameterType="java.lang.String"> 
+  DELETE FROM easymis_schedule_job WHERE job_id = #{jobId} 
+ </delete>  
+ <update id="removeBatch" parameterType="java.util.List"> 
+  UPDATE easymis_schedule_job SET delete_status=2  WHERE job_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <update id="restoreBatch" parameterType="java.util.List"> 
+  UPDATE easymis_schedule_job SET delete_status=1  WHERE job_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <delete id="deleteBatch" parameterType="java.util.List"> 
+  DELETE FROM easymis_schedule_job WHERE job_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </delete>  
+ <select id="findById" parameterType="java.lang.String" resultMap="EasymisScheduleJobResultMap">  
+  SELECT t.* FROM easymis_schedule_job t WHERE t.job_id = #{jobId} 
+ </select>  
+ <select id="findByIds" parameterType="java.util.List" resultMap="EasymisScheduleJobResultMap">   
+  SELECT t.* FROM easymis_schedule_job t  WHERE job_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </select>  
+ </mapper>  
+ 

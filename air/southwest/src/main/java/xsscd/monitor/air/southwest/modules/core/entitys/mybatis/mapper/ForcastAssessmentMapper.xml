@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.mapper.ForcastAssessmentMapper">
+ <resultMap id="Province" type="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.Province">
+    <id column="provinceName" property="provinceName" jdbcType="VARCHAR"/>
+    <result column="provinceName" property="provinceName" jdbcType="VARCHAR"/>
+    <collection property="areaList" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.Area">
+        <id column="areaName" property="areaName" jdbcType="VARCHAR"/>
+        <result column="areaName" property="areaName" jdbcType="VARCHAR"/>
+      <collection property="timeList" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.TimeType">
+          <id column="time" property="time" jdbcType="VARCHAR"/>
+          <result column="time" property="time" jdbcType="VARCHAR"/>
+        <collection property="dataList" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.EvaluationSummaryData">
+            <result column="time" property="time" jdbcType="VARCHAR"/>
+            <result column="provinceName" property="provinceName" jdbcType="VARCHAR"/>
+            <result column="areaName" property="areaName" jdbcType="VARCHAR"/>
+            <result column="cityName" property="cityName" jdbcType="VARCHAR"/>
+            <result column="quality" property="quality" jdbcType="VARCHAR"/>
+            <result column="primarypollutant" property="primarypollutant" jdbcType="VARCHAR"/>
+            <result column="PM25" property="PM25" jdbcType="VARCHAR"/>
+            <result column="aqi" property="aqi" jdbcType="VARCHAR"/>
+        </collection>
+      </collection>
+    </collection>
+</resultMap>
+
+    <resultMap id="TimeType1" type="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.TimeType1">
+        <id column="time" property="time" jdbcType="VARCHAR"/>
+        <collection property="provinceList" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.Province1">
+        <id column="provinceName" property="provinceName" jdbcType="VARCHAR"/>
+        <collection property="areaList" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.Area1">
+            <id column="areaName" property="areaName" jdbcType="VARCHAR"/>
+                <collection property="dataList" ofType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.EvaluationSummaryData">
+                    <result column="time" property="time" jdbcType="VARCHAR"/>
+                    <result column="provinceName" property="provinceName" jdbcType="VARCHAR"/>
+                    <result column="provinceId" property="provinceId" jdbcType="VARCHAR"/>
+                    <result column="areaName" property="areaName" jdbcType="VARCHAR"/>
+                    <result column="cityName" property="cityName" jdbcType="VARCHAR"/>
+                    <result column="cityCode" property="cityCode" jdbcType="VARCHAR"/>
+                    <result column="quality" property="quality" jdbcType="VARCHAR"/>
+                    <result column="primarypollutant" property="primarypollutant" jdbcType="VARCHAR"/>
+                    <result column="PM25" property="PM25" jdbcType="VARCHAR"/>
+                    <result column="aqi" property="aqi" jdbcType="VARCHAR"/>
+                </collection>
+        </collection>
+        </collection>
+    </resultMap>
+</mapper>
+ 

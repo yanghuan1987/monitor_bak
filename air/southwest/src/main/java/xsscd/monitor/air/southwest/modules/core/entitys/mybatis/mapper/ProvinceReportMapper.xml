@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.mapper.ProvinceReportMapper">
+    <resultMap id="provinceReport"
+               type="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.ProvinceReportDto">
+        <id column="forecastId" property="forecastId" jdbcType="BIGINT"/>
+        <result column="forecastInfo" property="forecastInfo" jdbcType="VARCHAR"/>
+        <result column="mapPath" property="mapPath" jdbcType="BLOB"/>
+        <result column="warningInfo" property="warningInfo" jdbcType="VARCHAR"/>
+        <result column="otherInfo" property="otherInfo" jdbcType="VARCHAR"/>
+        <result column="detailSceneryImagePath" property="detailSceneryImagePath" jdbcType="BLOB"/>
+        <result column="sceneryImagesPath" property="sceneryImagesPath" jdbcType="BLOB"/>
+        <result column="healthTips" property="healthTips" jdbcType="VARCHAR"/>
+        <result column="provinceCode" property="provinceCode" jdbcType="INTEGER"/>
+        <result column="isWarning" property="isWarning" jdbcType="INTEGER"/>
+        <result column="ishealthTips" property="ishealthTips" jdbcType="INTEGER"/>
+        <result column="isReportInfo" property="isReportInfo" jdbcType="INTEGER"/>
+        <result column="isPicInfo" property="isPicInfo" jdbcType="INTEGER"/>
+        <result column="CreatDate" property="creatDate" jdbcType="TIMESTAMP"/>
+        <result column="CreatName" property="creatName" jdbcType="VARCHAR"/>
+
+        <result column="detailSceneryImagePathName" property="detailSceneryImagePathName" jdbcType="VARCHAR"/>
+        <result column="sceneryImagesPathName" property="sceneryImagesPathName" jdbcType="VARCHAR"/>
+        <result column="mapPathName" property="mapPathName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getList"
+            parameterType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.vo.ProvinceReportVo"
+            resultMap="provinceReport">
+        SELECT * FROM provincereport WHERE 1=1
+        <if test="provinceCode != null">
+            AND provinceCode = #{provinceCode}
+        </if>
+        <if test="creatName != null">
+            AND CreatName = #{creatName}
+        </if>
+        <if test="creatDateST != null">
+            AND CreatDate <![CDATA[ >=  ]]> DATE_FORMAT(#{creatDateST},'%Y-%m-%d 00:00:00')
+        </if>
+        <if test="creatDateED != null">
+            AND CreatDate <![CDATA[ <=  ]]> DATE_FORMAT(#{creatDateED},'%Y-%m-%d 23:59:59')
+        </if>
+    </select>
+
+
+    <select id="getLists"
+            parameterType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.vo.ProvinceReportVo"
+            resultMap="provinceReport">
+        SELECT * FROM provincereport WHERE 1=1
+        <if test="provinceCode != null">
+            AND provinceCode = #{provinceCode}
+        </if>
+        <if test="creatName != null">
+            AND CreatName = #{creatName}
+        </if>
+        <if test="creatDateST != null">
+            AND CreatDate <![CDATA[ >=  ]]> DATE_FORMAT(#{creatDateST},'%Y-%m-%d 00:00:00')
+        </if>
+        <if test="creatDateED != null">
+            AND CreatDate <![CDATA[ <=  ]]> DATE_FORMAT(#{creatDateED},'%Y-%m-%d 23:59:59')
+        </if>
+    </select>
+
+    <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.core.entitys.mybatis.dto.ProvinceReportDto">
+        INSERT INTO provincereport
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="forecastInfo != null and forecastInfo != '' ">
+                forecastInfo,
+            </if>
+            <if test="mapPath != null">
+                mapPath,
+            </if>
+            <if test="warningInfo != null and warningInfo != '' ">
+                warningInfo,
+            </if>
+            <if test="otherInfo != null and otherInfo != '' ">
+                otherInfo,
+            </if>
+            <if test="detailSceneryImagePath != null">
+                detailSceneryImagePath,
+            </if>
+            <if test="sceneryImagesPath != null">
+                sceneryImagesPath,
+            </if>
+            <if test="healthTips != null and healthTips != '' ">
+                healthTips,
+            </if>
+            <if test="provinceCode != null">
+                provinceCode,
+            </if>
+            <if test="isWarning != null">
+                isWarning,
+            </if>
+            <if test="ishealthTips != null">
+                ishealthTips,
+            </if>
+            <if test="isReportInfo != null">
+                isReportInfo,
+            </if>
+            <if test="isPicInfo != null">
+                isPicInfo,
+            </if>
+            <if test="creatDate != null">
+                CreatDate,
+            </if>
+            <if test="creatName != null">
+                CreatName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="forecastInfo != null and forecastInfo != '' ">
+                #{forecastInfo},
+            </if>
+            <if test="mapPath != null">
+                #{mapPath},
+            </if>
+            <if test="warningInfo != null and warningInfo != '' ">
+                #{warningInfo},
+            </if>
+            <if test="otherInfo != null and otherInfo != '' ">
+                #{otherInfo},
+            </if>
+            <if test="detailSceneryImagePath != null">
+                #{detailSceneryImagePath},
+            </if>
+            <if test="sceneryImagesPath != null">
+                #{sceneryImagesPath},
+            </if>
+            <if test="healthTips != null and healthTips != '' ">
+                #{healthTips},
+            </if>
+            <if test="provinceCode != null">
+                #{provinceCode},
+            </if>
+            <if test="isWarning != null">
+                #{isWarning},
+            </if>
+            <if test="ishealthTips != null">
+                #{ishealthTips},
+            </if>
+            <if test="isReportInfo != null">
+                #{isReportInfo},
+            </if>
+            <if test="isPicInfo != null">
+                #{isPicInfo}
+            </if>
+            <if test="creatDate != null">
+                #{creatDate},
+            </if>
+            <if test="creatName != null">
+                #{creatName},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="java.lang.Integer">
+        UPDATE provincereport
+        <set>
+        <if test="forecastInfo != null and forecastInfo != '' ">
+            forecastInfo = #{forecastInfo},
+        </if>
+        <if test="mapPath != null">
+            mapPath = #{mapPath},
+            mapPathName = #{mapPathName},
+            sceneryImagesPath = NULL,
+            sceneryImagesPathName = NULL,
+        </if>
+        <if test="warningInfo != null and warningInfo != '' ">
+            warningInfo = #{warningInfo},
+        </if>
+        <if test="otherInfo != null and otherInfo != '' ">
+            otherInfo = #{otherInfo},
+            detailSceneryImagePath = NULL,
+            detailSceneryImagePathName = NULL,
+        </if>
+        <if test="detailSceneryImagePath != null">
+            detailSceneryImagePath = #{detailSceneryImagePath},
+            detailSceneryImagePathName = #{detailSceneryImagePathName},
+        </if>
+        <if test="sceneryImagesPath != null">
+            sceneryImagesPath = #{sceneryImagesPath},
+            sceneryImagesPathName = #{sceneryImagesPathName},
+            mapPath = NULL,
+            mapPathName = NULL,
+        </if>
+        <if test="healthTips != null and healthTips != '' ">
+            healthTips = #{healthTips},
+        </if>
+        <if test="provinceCode != null">
+            provinceCode = #{provinceCode},
+        </if>
+        <if test="isWarning != null">
+            isWarning = #{isWarning},
+        </if>
+        <if test="ishealthTips != null">
+            ishealthTips = #{ishealthTips},
+        </if>
+        <if test="isReportInfo != null">
+            isReportInfo = #{isReportInfo},
+        </if>
+        <if test="isPicInfo != null">
+            isPicInfo = #{isPicInfo},
+        </if>
+            <if test="deletePic == 0">
+                detailSceneryImagePath = NULL,
+            </if>
+            <if test="deletePic == 1">
+                sceneryImagesPath = NULL,
+            </if>
+            <if test="deletePic == 2">
+                mapPath = NULL,
+            </if>
+
+        </set>
+        WHERE 1=1
+        <if test="provinceCode != null">
+            AND provinceCode = #{provinceCode}
+        </if>
+        <if test="creatName != null">
+            AND CreatName = #{creatName}
+        </if>
+        <if test="creatDateST != null">
+            AND CreatDate <![CDATA[ >=  ]]> DATE_FORMAT(#{creatDateST},'%Y-%m-%d 00:00:00')
+        </if>
+        <if test="creatDateED != null">
+            AND CreatDate <![CDATA[ <=  ]]> DATE_FORMAT(#{creatDateED},'%Y-%m-%d 23:59:59')
+        </if>
+    </update>
+    <delete id="delete" parameterType="java.lang.String">
+  DELETE FROM provincereport WHERE provinceCode = #{provinceCode};
+ </delete>
+</mapper>
+ 

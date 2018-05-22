@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ebip</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+<script
+	src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+<script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+<script
+	src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<style>
+/* Make the image fully responsive */
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+</style>
+</head>
+<body>
+	<div id="dashboardData"></div>
+	<div id="dashboardDataVue">
+	<button @click="getDashboardInfo">GET方式发送AJAX请求</button>
+<ul >
+  <div v-for="item in positionJson" >
+    {{ item.slice_id }}
+  </div>
+   <todo-item
+      v-for="item in positionJson"
+      v-bind:todo="item"
+      v-bind:key="item.slice_id">
+    </todo-item>
+</ul>
+</div>
+	<script type="text/babel">
+      var DashboardInfo = React.createClass({
+        getInitialState: function() {
+          return {
+            dashboardId: '',
+			dashboardTitle: '',
+			cardList:''
+          };
+        },
+
+        componentDidMount: function() {
+          this.serverRequest = $.get(this.props.source, function (result) {
+            var dashboard = result.dashboard;
+            this.setState({
+              dashboardId: dashboard.dashboardId,
+			  dashboardTitle: dashboard.dashboardTitle,
+			  cardList:dashboard.cardList
+            });
+          }.bind(this));
+        },
+
+        componentWillUnmount: function() {
+          this.serverRequest.abort();
+        },
+
+        render: function() {
+          return (
+            <div>
+              {this.state.dashboardId} 对应的看板名称：
+              <a href={this.state.dashboardId}>{this.state.dashboardTitle}</a>
+            </div>
+          );
+        }
+      });
+	var CardList = React.createClass({
+        getInitialState: function() {
+          return {
+            dashboardId: '',
+			dashboardTitle: '',
+			cardList:''
+          };
+        },
+  		render: function() {
+			return (
+				<div>
+					<form>
+						OK
+					</form>
+				</div>
+				);
+			}
+		});
+
+const numbers = [1, 2, 3, 4, 5];
+      ReactDOM.render(
+        <DashboardInfo source="http://127.0.0.1:5000/public/dashboard/111.json" />,
+        document.getElementById('dashboardData')
+      );
+    </script>
+<script type="text/javascript">
+//切片显示区域
+Vue.component('todo-item', {
+	  props: ['todo'],
+	  template: '<div class=cl{{todo}} >' 
+	  +'{{ todo.slice_id }}'
+	  
+	  +'</li>'
+	})
+//看板信息	
+var app = new Vue({
+	  el: '#dashboardDataVue',
+	  data: {
+		    cardList: [],
+		    positionJson:[]
+		  },
+	  methods:{
+		  getDashboardInfo:function(){
+			  $.ajax({
+	              type : "POST",
+	              url : "http://127.0.0.1:5000/public/dashboard/111.json",
+	              data : "11111",
+	              success : function(data) {
+	                  app.cardList=data.dashboard.cardList;
+	                  app.positionJson=JSON.parse(data.dashboard.positionJson);
+	              },
+	              error : function(){
+	                  alert("错误");
+	              }
+	
+	          });
+		 }		  
+	  }
+	});
+	app.getDashboardInfo();
+</script>
+</body>
+</html>

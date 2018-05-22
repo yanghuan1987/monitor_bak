@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+ <!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+ <mapper namespace="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.mapper.OrganizeFunctionMapper">   
+ <resultMap id="OrganizeFunctionResultMap" type="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeFunction">  
+<result column="function_id" property="functionId" jdbcType="VARCHAR"/> 
+<result column="org_id" property="orgId" jdbcType="VARCHAR"/> 
+<result column="sys_code" property="sysCode" jdbcType="VARCHAR"/> 
+<result column="alias" property="alias" jdbcType="VARCHAR"/> 
+<result column="function_name" property="functionName" jdbcType="VARCHAR"/> 
+<result column="parent_id" property="parentId" jdbcType="VARCHAR"/> 
+<result column="level" property="level" jdbcType="INTEGER"/> 
+<result column="category" property="category" jdbcType="INTEGER"/> 
+<result column="group_id" property="groupId" jdbcType="VARCHAR"/> 
+<result column="group_name" property="groupName" jdbcType="VARCHAR"/> 
+<result column="display_name" property="displayName" jdbcType="VARCHAR"/> 
+<result column="detail" property="detail" jdbcType="VARCHAR"/> 
+<result column="url" property="url" jdbcType="VARCHAR"/> 
+<result column="priority" property="priority" jdbcType="INTEGER"/> 
+<result column="depict" property="depict" jdbcType="VARCHAR"/> 
+<result column="icon" property="icon" jdbcType="VARCHAR"/> 
+<result column="free_status" property="freeStatus" jdbcType="INTEGER"/> 
+<result column="due_date" property="dueDate" jdbcType="DATE"/> 
+<result column="status" property="status" jdbcType="INTEGER"/> 
+</resultMap>  
+<select id="getList" parameterType="map" resultMap="OrganizeFunctionResultMap">   
+  SELECT t.* FROM organize_function t  
+ <where> 
+ <if test="functionId != null and functionId != '' ">  
+   t.function_id = #{functionId}  
+  </if>  
+ <if test="orgId != null and orgId != '' ">  
+   and t.org_id = #{orgId}  
+  </if>  
+ <if test="sysCode != null and sysCode != '' ">  
+   and t.sys_code = #{sysCode}  
+  </if>  
+ <if test="alias != null and alias != '' ">  
+   and t.alias = #{alias}  
+  </if>  
+ <if test="functionName != null and functionName != '' ">  
+   and t.function_name = #{functionName}  
+  </if>  
+ <if test="parentId != null and parentId != '' ">  
+   and t.parent_id = #{parentId}  
+  </if>  
+ <if test="level != null and level != '' ">  
+   and t.level = #{level}  
+  </if>  
+ <if test="category != null and category != '' ">  
+   and t.category = #{category}  
+  </if>  
+ <if test="groupId != null and groupId != '' ">  
+   and t.group_id = #{groupId}  
+  </if>  
+ <if test="groupName != null and groupName != '' ">  
+   and t.group_name = #{groupName}  
+  </if>  
+ <if test="displayName != null and displayName != '' ">  
+   and t.display_name = #{displayName}  
+  </if>  
+ <if test="detail != null and detail != '' ">  
+   and t.detail = #{detail}  
+  </if>  
+ <if test="url != null and url != '' ">  
+   and t.url = #{url}  
+  </if>  
+ <if test="priority != null and priority != '' ">  
+   and t.priority = #{priority}  
+  </if>  
+ <if test="depict != null and depict != '' ">  
+   and t.depict = #{depict}  
+  </if>  
+ <if test="icon != null and icon != '' ">  
+   and t.icon = #{icon}  
+  </if>  
+ <if test="freeStatus != null and freeStatus != '' ">  
+   and t.free_status = #{freeStatus}  
+  </if>  
+ <if test="dueDate != null and dueDate != '' ">  
+   and t.due_date = #{dueDate}  
+  </if>  
+ <if test="status != null and status != '' ">  
+   and t.status = #{status}  
+  </if>  
+  </where> 
+   
+ </select>  
+ <insert id="save" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeFunction">  
+ INSERT INTO organize_function(function_id,org_id,sys_code,alias,function_name,parent_id,level,category,group_id,group_name,display_name,detail,url,priority,depict,icon,free_status,due_date,status)values(#{functionId},#{orgId},#{sysCode},#{alias},#{functionName},#{parentId},#{level},#{category},#{groupId},#{groupName},#{displayName},#{detail},#{url},#{priority},#{depict},#{icon},#{freeStatus},#{dueDate},#{status}) 
+ </insert>  
+ <insert id="saveBatch" parameterType="java.util.List">  
+ INSERT INTO organize_function(function_id,org_id,sys_code,alias,function_name,parent_id,level,category,group_id,group_name,display_name,detail,url,priority,depict,icon,free_status,due_date,status)values 
+  <foreach collection="list" item="bean" index="index" separator=","> 
+ (#{bean.functionId},#{bean.orgId},#{bean.sysCode},#{bean.alias},#{bean.functionName},#{bean.parentId},#{bean.level},#{bean.category},#{bean.groupId},#{bean.groupName},#{bean.displayName},#{bean.detail},#{bean.url},#{bean.priority},#{bean.depict},#{bean.icon},#{bean.freeStatus},#{bean.dueDate},#{bean.status}) 
+  </foreach> 
+ </insert>  
+ <update id="update" parameterType="xsscd.monitor.air.southwest.modules.system.entitys.mybatis.dto.OrganizeFunction">  
+  UPDATE organize_function SET function_id= #{functionId},org_id= #{orgId},sys_code= #{sysCode},alias= #{alias},function_name= #{functionName},parent_id= #{parentId},level= #{level},category= #{category},group_id= #{groupId},group_name= #{groupName},display_name= #{displayName},detail= #{detail},url= #{url},priority= #{priority},depict= #{depict},icon= #{icon},free_status= #{freeStatus},due_date= #{dueDate},status= #{status} WHERE function_id= #{functionId} 
+ </update> 
+ <delete id="delete" parameterType="java.lang.String"> 
+  DELETE FROM organize_function WHERE function_id = #{functionId} 
+ </delete>  
+ <update id="removeBatch" parameterType="java.util.List"> 
+  UPDATE organize_function SET delete_status=2  WHERE function_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <update id="restoreBatch" parameterType="java.util.List"> 
+  UPDATE organize_function SET delete_status=1  WHERE function_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </update>  
+ <delete id="deleteBatch" parameterType="java.util.List"> 
+  DELETE FROM organize_function WHERE function_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </delete>  
+ <select id="findById" parameterType="java.lang.String" resultMap="OrganizeFunctionResultMap">  
+  SELECT t.* FROM organize_function t WHERE t.function_id = #{functionId} 
+ </select>  
+ <select id="findByIds" parameterType="java.util.List" resultMap="OrganizeFunctionResultMap">   
+  SELECT t.* FROM organize_function t  WHERE function_id in
+ <foreach collection="list" item="idkey" open="(" separator="," close=")">
+  #{idkey}
+ </foreach> 
+ </select>  
+ <select id="findByStaffId" parameterType="java.lang.String" resultMap="OrganizeFunctionResultMap">   
+SELECT t.* FROM organize_function t LEFT JOIN organize_staff_function on t.function_id=organize_staff_function.function_id
+ where organize_staff_function.staff_id= #{staffId}
+<!--  <where> 
+ <if test="staffId != null and staffId != '' ">  
+   organize_staff_function.staff_id= #{staffId}
+  </if> 
+  </where>  -->
+   
+ </select>
+ </mapper>  
+ 

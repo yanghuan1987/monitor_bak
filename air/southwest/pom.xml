@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>xsscd.monitor</groupId>
+		<artifactId>air</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>xsscd.monitor.air</groupId>
+	<artifactId>southwest</artifactId>
+	<name>southwest</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<quartz.version>2.3.0</quartz.version>
+		<shiro.version>1.2.5</shiro.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-cloud.version>Dalston.SR5</spring-cloud.version>
+		<commons-httpclient.version>3.1</commons-httpclient.version>
+		<httpclient.version>4.5.2</httpclient.version>
+		<poi.version>3.12</poi.version>
+		<swagger.version>2.7.0</swagger.version>
+		<hutool-all-version>4.0.9</hutool-all-version>
+		<log4j.version>2.5</log4j.version>
+		<zookeeper.version>3.4.6</zookeeper.version>
+		<hadoop.version>2.7.1</hadoop.version>
+		<hbase.version>1.1.2</hbase.version>
+		<hive.version>1.2.1</hive.version>
+		<wit.version>2.4.0-beta</wit.version>
+		<axis2.version>1.6.2</axis2.version>
+		<zookeeper.scope>compile</zookeeper.scope>
+		<hadoop.scope>compile</hadoop.scope>
+		<hbase.scope>compile</hbase.scope>
+		<hive.scope>compile</hive.scope>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+	<!-- 调用web Service -->
+	<!-- axis 1.4 jar start -->
+			<dependency>
+				<groupId>org.apache.axis2</groupId>
+				<artifactId>axis2</artifactId>
+				<version>${axis2.version}</version>
+				<type>pom</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.axis2</groupId>
+				<artifactId>axis2-adb</artifactId>
+				<version>${axis2.version}</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.axis2</groupId>
+				<artifactId>axis2-kernel</artifactId>
+				<version>${axis2.version}</version>
+				<type>jar</type>
+				<scope>compile</scope>
+	           <exclusions>  
+	               <exclusion>  
+	                   <groupId>javax.servlet</groupId>  
+	                   <artifactId>servlet-api</artifactId>  
+	               </exclusion>  
+	           </exclusions> 
+			</dependency>
+			<dependency>
+				<groupId>org.apache.axis2</groupId>
+				<artifactId>axis2-transport-http</artifactId>
+				<version>${axis2.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpcore</artifactId>
+                </exclusion>
+            </exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.axis2</groupId>
+				<artifactId>axis2-transport-local</artifactId>
+				<version>${axis2.version}</version>
+			</dependency>
+        <!-- axis 1.4 jar end -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<!-- Runtime -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.42</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<!-- <version>${quartz.version}</version> -->
+			<exclusions>
+				<exclusion>
+					<artifactId>c3p0</artifactId>
+					<groupId>c3p0</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- mongodb begin -->
+		<!--<dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-mongodb</artifactId> 
+			</dependency> <dependency> <groupId>de.flapdoodle.embed</groupId> <artifactId>de.flapdoodle.embed.mongo</artifactId> 
+			</dependency> -->
+		<!-- mongodb end -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		<!--ftp -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-ftp</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+		<!--activiti 工作流spring boot 2.0有问题 -->
+
+		<!-- <dependency> <groupId>org.activiti</groupId> <artifactId>activiti-spring-boot-starter-basic</artifactId> 
+			<version>6.0.0.RC1</version> </dependency> -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+		<!--httpclient begin -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-cache</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>${commons-httpclient.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+		<!--httpclient end -->
+		<!--shiro start -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-all</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<!-- shiro end -->
+		<!-- javax提供的annotation begin -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version><!--$NO-MVN-MAN-VER$ -->
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+		<!-- javax提供的annotation end -->
+		<!-- poi start -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-jexl</artifactId>
+		    <version>2.1.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.jxls</groupId>
+		    <artifactId>jxls</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.jxls</groupId>
+		    <artifactId>jxls-poi</artifactId>
+		    <version>1.0.9</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.xmlbeans</groupId>
+		    <artifactId>xmlbeans</artifactId>
+		    <version>2.6.0</version>
+		</dependency>
+		<!-- poi end -->
+		<!-- email start -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.6</version>
+		</dependency>
+		<!-- email end -->
+		<!-- json解析需要的jar start -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ezmorph</groupId>
+			<artifactId>ezmorph</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.5</version>
+		</dependency>
+ 		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging-api</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<type>jar</type>
+			<classifier>jdk15</classifier>
+			<scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+		<!-- json解析需要的jar end -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.28</version>
+		</dependency>
+		<!-- java 实用工具类 布隆过滤 1.缓存 2.克隆接口 3.类型转换 4.日期处理 5.数据库ORM（基于ActiveRecord思想） 
+			6.基于DFA有限自动机的多个关键字查找 7.HTTP客户端 8.IO和文件 9.有用的一些数据结构 10.日志 11.反射代理类的简化（AOP切面实现） 
+			12.Setting（一种扩展Properties的配置文件） 13.System（JVM和系统信息等） 14.WatchService的封装（文件变动监控） 
+			15.XXXUtil各种有用的工具类 -->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>${hutool-all-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
+		<!-- tableToXls -->
+		<dependency>
+			<groupId>me.chyxion</groupId>
+			<artifactId>table-to-xls</artifactId>
+			<version>0.0.1-RELEASE</version>
+		</dependency>
+
+
+		<!-- swagger being -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<!-- swagger end -->
+		<!-- 系统监控 begin -->
+		<dependency>
+			<groupId>net.bull.javamelody</groupId>
+			<artifactId>javamelody-spring-boot-starter</artifactId>
+			<version>1.69.0</version>
+		</dependency>
+		<!-- 系统监控 end -->
+		<!-- 验证码 bregin -->
+		<dependency>
+			<groupId>com.github.penggle</groupId>
+			<artifactId>kaptcha</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		<!-- 验证码 end -->
+		<!-- 缓存 https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>
+		<!-- -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<!--velocity begin -->
+		<dependency>
+			<artifactId>velocity</artifactId>
+			<groupId>org.apache.velocity</groupId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-tools</artifactId>
+			<version>2.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>dom4j</artifactId>
+					<groupId>dom4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>oro</artifactId>
+					<groupId>oro</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>sslext</artifactId>
+					<groupId>sslext</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-core</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-taglib</artifactId>
+					<groupId>org.apache.struts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>struts-tiles</artifactId>
+					<groupId>org.apatruts</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-validator</artifactId>
+					<groupId>commons-validator</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-beanutils</artifactId>
+					<groupId>commons-beanutils</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-chain</artifactId>
+					<groupId>commons-chain</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-collections</artifactId>
+					<groupId>commons-collections</groupId>
+				</exclusion>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+			</exclusions>
+		</dependency>
+		<!--velocity end -->
+		<!-- bi begin -->
+		<!-- <dependency> <groupId>commons-dbutils</groupId> <artifactId>commons-dbutils</artifactId> 
+			<version>1.7</version> </dependency> <dependency> <groupId>org.apache.commons</groupId> 
+			<artifactId>commons-lang3</artifactId> <version>3.7</version> </dependency> 
+			<dependency> <groupId>com.lmax</groupId> <artifactId>disruptor</artifactId> 
+			<version>3.4.2</version> </dependency> <dependency> <groupId>commons-cli</groupId> 
+			<artifactId>commons-cli</artifactId> <version>1.4</version> </dependency> 
+			<dependency> <groupId>com.carrotsearch</groupId> <artifactId>java-sizeof</artifactId> 
+			<version>0.0.5</version> </dependency> <dependency> <groupId>net.hydromatic</groupId> 
+			<artifactId>eigenbase-properties</artifactId> <version>1.1.5</version> </dependency> 
+			<dependency> <groupId>commons-configuration</groupId> <artifactId>commons-configuration</artifactId> 
+			<version>1.10</version> </dependency> <dependency> <groupId>org.apache.commons</groupId> 
+			<artifactId>commons-csv</artifactId> <version>1.5</version> </dependency> 
+			<dependency> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-api</artifactId> 
+			<version>${log4j.version}</version> </dependency> <dependency> <groupId>org.apache.logging.log4j</groupId> 
+			<artifactId>log4j-core</artifactId> <version>${log4j.version}</version> </dependency> 
+			<dependency> <grouorg.apache.logging.log4j</groupId> <artifactId>log4j-slf4j-impl</artifactId> 
+			<version>${log4j.version}</version> </dependency> <dependency> <groupId>org.apache.logging.log4j</groupId> 
+			<artifactId>log4j-1.2-api</artifactId> <version>${log4j.version}</version> 
+			</dependency> <dependency> <groupId>org.apache.logging.log4j</groupId> <artifactId>log4j-jul</artifactId> 
+			<version>${log4j.version}</version> </dependency> <dependency> <groupId>org.apache.logging.log4j</groupId> 
+			<artifactId>log4j-jcl</artifactId> <version>${log4j.version}</version> </dependency> -->
+		<!-- bi end -->
+		<!-- hbase hdfs begin -->
+		<!-- <dependency> <groupId>org.apache.hadoop</groupId> <artifactId>hadoop-common</artifactId> 
+			<version>3.1.0</version> <scope>provided</scope> </dependency> <dependency> 
+			<groupId>org.apache.hadoop</groupId> <actId>hadoop-hdfs</artifactId> <version>3.1.0</version> 
+			</dependency> <dependency> <groupId>org.apache.hadoop</groupId> <artifactId>hadoop-mapreduce-client-core</artifactId> 
+			<version>3.1.0</version> </dependency> <dependency> <groupId>org.ap.hbase</groupId> 
+			<artifactId>hbase-shaded-client</artifactId> <version>1.4.3</version> </dependency> 
+			<dependency> <groupId>org.apache.zookeeper</groupId> <artifactId>zookeeper</artifactId> 
+			<version>3.4.11</version> <type>pom</type> </dependency>! -->
+		<!-- hbase end -->
+		<!-- <dependency> <groupId>org.apache.kafka</groupId> <artifactId>kafka_2.11</artifactId> 
+			<version>0.8.2.1</version> </dependency> <dependency> <groupId>org.febit.wit</groupId> 
+			<artifactId>wit-core</artifactId> <version>${wit.version}</version> </dependency> -->
+		<!-- 热部署 begin -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+		<!--热部署 end -->
+	</dependencies>
+	<build>
+		<finalName>southwest</finalName>
+		<plugins>
+			<!-- 需要引用的jar包 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+<!--解决Intellij构建项目时，target/classes目录下不存在mapper.xml文件 -->
+<!-- 		<resources>
+			<resource>
+				<directory>${basedir}/src/main/java</directory>
+			<includes>
+				<include>**/*.xml</include>
+			</includes>
+			</resource>
+		</resources> -->
+	</build>
+</project>
